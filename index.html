@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grade 9 Survival Kit — Sto. Tomas Academy</title>
+<style>
+:root{
+  --bg:#0b0f1a;
+  --bg2:#121829;
+  --panel:#161d33;
+  --panel2:#1c2440;
+  --accent:#8b5cf6;
+  --accent2:#22d3ee;
+  --ok:#10b981;
+  --warn:#f59e0b;
+  --bad:#ef4444;
+  --text:#e5e7eb;
+  --dim:#94a3b8;
+  --border:#1f2a44;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+a{color:var(--accent2)}
+header{
+  background:linear-gradient(135deg,#1e1b4b 0%,#0b0f1a 60%);
+  padding:22px 20px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)
+}
+.brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,#8b5cf6,#22d3ee);
+  display:grid;place-items:center;font-weight:800;color:#0b0f1a;font-size:20px
+}
+h1{margin:0;font-size:20px;letter-spacing:.2px}
+.sub{color:var(--dim);font-size:12.5px}
+.tabs{
+  display:flex;gap:6px;margin-top:14px;flex-wrap:wrap
+}
+.tab{
+  padding:10px 16px;border:1px solid var(--border);border-radius:999px;
+  background:var(--panel);cursor:pointer;color:var(--text);font-size:14px;
+  transition:.15s
+}
+.tab.active{background:linear-gradient(135deg,#8b5cf6,#6366f1);border-color:transparent;box-shadow:0 6px 20px rgba(139,92,246,.35)}
+.tab:hover{transform:translateY(-1px)}
+main{max-width:1100px;margin:24px auto;padding:0 16px 80px}
+.hero{
+  padding:18px;border:1px solid var(--border);border-radius:16px;background:var(--panel);
+  margin-bottom:18px
+}
+.hero h2{margin:0 0 6px;font-size:18px}
+.hero p{margin:0;color:var(--dim);font-size:14px}
+.progressbar{height:8px;background:#0d1426;border-radius:99px;overflow:hidden;margin-top:10px}
+.progressbar>span{display:block;height:100%;background:linear-gradient(90deg,#22d3ee,#8b5cf6);width:0%}
+.panel{display:none}
+.panel.active{display:block}
+details.branch{
+  border:1px solid var(--border);background:var(--panel);border-radius:12px;
+  margin:8px 0;overflow:hidden
+}
+details.branch[open]{background:var(--panel2)}
+summary{cursor:pointer;padding:12px 14px;font-weight:600;list-style:none;display:flex;align-items:center;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::before{
+  content:"▸";color:var(--accent2);transition:transform .15s;font-size:12px
+}
+details[open]>summary::before{transform:rotate(90deg)}
+.badge{
+  margin-left:auto;font-size:11px;padding:3px 8px;border-radius:99px;
+  background:#0d1426;color:var(--dim);border:1px solid var(--border)
+}
+.badge.done{background:rgba(16,185,129,.15);color:var(--ok);border-color:rgba(16,185,129,.3)}
+details.leaf{background:#0d1426;margin:6px 12px 10px;border-radius:10px;border:1px solid var(--border)}
+details.leaf>summary{padding:10px 12px;font-weight:500;font-size:14px}
+.content{padding:8px 16px 16px;font-size:14.5px}
+.feynman{
+  background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(34,211,238,.08));
+  border:1px solid rgba(139,92,246,.3);border-radius:10px;padding:12px 14px;margin:10px 0
+}
+.feynman .label{font-size:11px;letter-spacing:1.5px;color:var(--accent2);font-weight:700;text-transform:uppercase}
+.feynman h4{margin:4px 0 6px;font-size:15px}
+.analogy{
+  background:#0d1426;border-left:3px solid var(--warn);padding:10px 12px;border-radius:8px;margin:8px 0;font-size:14px
+}
+.analogy b{color:var(--warn)}
+.steps{counter-reset:step;padding:0;list-style:none;margin:10px 0}
+.steps li{
+  counter-increment:step;position:relative;padding:10px 12px 10px 46px;margin:6px 0;
+  background:#0d1426;border:1px solid var(--border);border-radius:8px
+}
+.steps li::before{
+  content:counter(step);
+  position:absolute;left:10px;top:10px;width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#0b0f1a;display:grid;place-items:center;
+  font-weight:800;font-size:12.5px
+}
+.math{font-family:"Cambria Math","Latin Modern Math",Georgia,serif;font-size:16px}
+.formula{
+  background:#0d1426;border:1px dashed var(--border);padding:8px 12px;border-radius:8px;margin:8px 0;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;overflow-x:auto
+}
+.interactive{
+  border:1px solid var(--accent);border-radius:12px;padding:14px;margin:12px 0;
+  background:rgba(139,92,246,.07)
+}
+.interactive h5{margin:0 0 8px;font-size:14px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px}
+input[type=number],input[type=text],select{
+  background:#0d1426;color:var(--text);border:1px solid var(--border);border-radius:8px;
+  padding:8px 10px;font-size:14px;width:90px;font-family:inherit
+}
+input[type=text]{width:100%}
+button{
+  background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border:0;border-radius:8px;
+  padding:9px 14px;cursor:pointer;font-weight:600;font-size:13px;transition:.15s
+}
+button:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(99,102,241,.35)}
+button.secondary{background:var(--panel2);border:1px solid var(--border)}
+.output{
+  margin-top:10px;padding:10px 12px;background:#0a0f1f;border:1px solid var(--border);border-radius:8px;
+  min-height:20px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap
+}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;background:#0d1426;border:1px solid var(--border);color:var(--dim);margin-right:4px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row>*{margin-top:4px}
+.mark-done{margin-top:10px}
+.quiz{margin:10px 0;padding:10px 12px;background:#0d1426;border-radius:8px;border:1px solid var(--border)}
+.quiz .q{font-weight:600;margin-bottom:6px}
+.quiz .opts button{background:var(--panel2);border:1px solid var(--border);margin:4px 4px 0 0;font-weight:500}
+.quiz .opts button.correct{background:rgba(16,185,129,.25);border-color:var(--ok)}
+.quiz .opts button.wrong{background:rgba(239,68,68,.25);border-color:var(--bad)}
+.footer{color:var(--dim);font-size:12px;text-align:center;margin-top:30px;padding:20px 0;border-top:1px solid var(--border)}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;background:rgba(34,211,238,.12);color:var(--accent2);font-size:11.5px;margin-right:6px;border:1px solid rgba(34,211,238,.25)}
+table.tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+table.tbl th,table.tbl td{border:1px solid var(--border);padding:6px 10px;text-align:left}
+table.tbl th{background:#0d1426;color:var(--accent2)}
+kbd{background:#0d1426;padding:1px 6px;border-radius:4px;border:1px solid var(--border);font-size:12px;font-family:ui-monospace}
+.meme{background:#0d1426;padding:8px 12px;border-radius:8px;border-left:3px solid #ec4899;font-style:italic;margin:8px 0;color:#fbcfe8;font-size:13.5px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">9</div>
+    <div>
+      <h1>Grade 9 Survival Kit <span class="pill">STA INCOMING</span></h1>
+      <div class="sub">Feynman-style, no-BS learning for Filipino • Math • Science — built for Gen Z who "doesn't do boring."</div>
+    </div>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="filipino">📚 Filipino</button>
+    <button class="tab" data-tab="math">🧮 Math</button>
+    <button class="tab" data-tab="science">🔬 Science</button>
+    <button class="tab" data-tab="how">🧠 How to Use</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOW TO USE ============ -->
+<section class="panel" id="panel-how">
+  <div class="hero">
+    <h2>Bakit ito gumagana (and why you'll actually learn)</h2>
+    <p>This site uses the <b>Feynman Technique</b>: if you can't explain it to a 12-year-old, you don't know it. Every topic here is broken into: (1) plain talk, (2) a meme/analogy you'll relate to, (3) step-by-step worked solution, (4) try-it-yourself interactive.</p>
+  </div>
+  <div class="hero">
+    <h2>Rules of the game</h2>
+    <ul>
+      <li><b>One topic per sitting.</b> 15 min max. Your brain's TikTok loop needs small wins.</li>
+      <li><b>Explain it out loud.</b> To your dog, your lola, your bias — literally anyone. Kung hindi mo ma-explain, balikan.</li>
+      <li><b>Solve BEFORE you peek.</b> Click "Show Solution" <em>only after</em> you wrote something down.</li>
+      <li><b>Tick the ✅ mark done</b> button. Your progress saves automatically.</li>
+      <li><b>Hindi ka tanga</b> — you're just used to being entertained. We'll use that.</li>
+    </ul>
+  </div>
+  <div class="hero">
+    <h2>The Feynman Method, Gen-Z'd</h2>
+    <ol>
+      <li><b>Pick the topic.</b> Read the plain-talk explanation.</li>
+      <li><b>Teach it back.</b> Pretend you're making a TikTok explaining it in 30 seconds.</li>
+      <li><b>Spot your gaps.</b> Wherever you stutter = what you don't actually get yet.</li>
+      <li><b>Refine and repeat.</b> Go back, simplify further, use your own analogy.</li>
+    </ol>
+    <div class="meme">POV: You explained quadratic equations to your crush and they said "wait, you're smart?" 💅</div>
+  </div>
+</section>
+
+<!-- ============ FILIPINO ============ -->
+<section class="panel active" id="panel-filipino">
+  <div class="hero">
+    <h2>📚 Filipino 9 — Panitikan ng Pilipinas: Kalayaan hanggang Bagong Milenyo</h2>
+    <p>Main obra: <b>Noli Me Tangere</b> ni Jose Rizal. Plus: tayutay, pagsulat, talumpati, tula, sanaysay, at ang pagsusuri ng panitikan. Hindi ito boring kung alam mo kung bakit.</p>
+    <div class="progressbar"><span id="prog-filipino"></span></div>
+  </div>
+
+  <details class="branch" data-sec="fil-q1">
+    <summary>Unang Markahan: Noli Me Tangere + Dekada ng Kalayaan <span class="badge">Q1</span></summary>
+
+    <details class="leaf" data-topic="fil-noli-intro">
+      <summary>1.1 — Ano ba talaga ang Noli Me Tangere?</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>I-explain mo sa 12-year-old:</h4>
+          <p>Noli Me Tangere = "<b>Don't Touch Me</b>" sa Latin. Isinulat ito ni <b>Jose Rizal</b> noong 1887. Imagine mo, Rizal made the Filipino version of a <b>Netflix social-commentary drama</b>, pero nung walang Netflix — siya na mismo ang writer, producer, at whistleblower. Ang goal? I-expose ang abuso ng mga prayleng Espanyol sa Pilipinas.</p>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Noli = Rizal's diss track. Parang kay Kendrick vs Drake — pero literal na society ang kalaban. Bawat character = archetype ng tao sa lipunan.</div>
+        <p><b>Mga kailangan mong tandaan:</b></p>
+        <ul>
+          <li><b>Genre:</b> Novela (sosyo-politikal)</li>
+          <li><b>Wika:</b> Espanyol (tinagalog/tinagalize pagdating sa schools)</li>
+          <li><b>Taong isinulat:</b> 1884–1887, sa Europa</li>
+          <li><b>Kapalit na obra:</b> El Filibusterismo (Grade 10)</li>
+          <li><b>Pangunahing tauhan:</b> Crisostomo Ibarra (bumalik galing Europe para magpatayo ng paaralan)</li>
+        </ul>
+        <div class="meme">If Noli was posted today, Rizal would get cancelled by the Spanish government — oh wait, he did. Literally shot, December 30, 1896. 💀</div>
+        <div class="quiz" data-q="noli-1">
+          <div class="q">Q: Ano ang ibig sabihin ng "Noli Me Tangere"?</div>
+          <div class="opts">
+            <button data-correct="0">Huwag mo akong pigilan</button>
+            <button data-correct="1">Huwag mo akong salingin</button>
+            <button data-correct="0">Mahal kita</button>
+            <button data-correct="0">Paalam sa lahat</button>
+          </div>
+        </div>
+        <button class="mark-done secondary" data-mark="fil-noli-intro">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-noli-characters">
+      <summary>1.2 — Mga Tauhan (and why each one is literally a real-life archetype)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Isipin mo silang mga characters sa K-drama o anime — bawat isa may "role" sa lipunan.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Tauhan</th><th>Role sa Lipunan (Gen Z Version)</th></tr>
+          <tr><td><b>Crisostomo Ibarra</b></td><td>The idealistic returnee. Parang si OFW na anak na uwi galing abroad — gusto baguhin ang bayan via education.</td></tr>
+          <tr><td><b>Maria Clara</b></td><td>The "perfect daughter" archetype. Society's unrealistic standard ng Filipina — sunud-sunuran, maganda, quiet. Iconic pero traumatic backstory.</td></tr>
+          <tr><td><b>Padre Damaso</b></td><td>Main villain. Corrupt priest energy. Si "tito" na galit sa lahat pero pinakabulok.</td></tr>
+          <tr><td><b>Padre Salvi</b></td><td>Creepy hypocrite priest. Obsessive. Think: stalker sa TikTok, pero cassock naman.</td></tr>
+          <tr><td><b>Elias</b></td><td>Sagrado mystery guy. The "anti-establishment" rebel. Parang Zoro pero Pilipino.</td></tr>
+          <tr><td><b>Sisa</b></td><td>Mother who lost her sons (Basilio, Crispin). Symbol ng <b>Inang Bayan</b> na naghihirap.</td></tr>
+          <tr><td><b>Basilio & Crispin</b></td><td>Anak ni Sisa. Inakusahan ng pagnanakaw sa simbahan. Basically cancel culture without evidence.</td></tr>
+          <tr><td><b>Kapitan Tiago</b></td><td>The social climber tito. Rich pero sunud-sunuran sa prayle.</td></tr>
+          <tr><td><b>Doña Victorina</b></td><td>The Pinay na ayaw ma-Pinay. Pasosyal, fake accent, self-hating colonized mindset.</td></tr>
+        </table>
+        <div class="analogy"><b>🎯 Feynman hack:</b> Choose one character. I-imagine mo silang modern IG influencer. Ano ang magiging bio nila? That's how you remember them forever.</div>
+        <div class="interactive">
+          <h5>💡 Interactive: Character-Match</h5>
+          <p>Type the character name:</p>
+          <div class="row">
+            <input type="text" id="char-q" placeholder="Sino ang naging simbolo ng Inang Bayan?" />
+            <button onclick="checkChar()">Check</button>
+          </div>
+          <div class="output" id="char-out">Sagot mo dito...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="fil-noli-characters">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-noli-theme">
+      <summary>1.3 — Mga Tema at Mensahe ng Noli</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Ang Noli = mirror ng lipunan. Bawat tema = problem na existing pa rin today.</h4>
+        </div>
+        <ul>
+          <li><b>Kolonyalismo at Abusong Pang-relihiyon</b> — mga prayle = puppet masters. Today? Replace "prayle" with "institutions na pinagtatakpan ang baho."</li>
+          <li><b>Edukasyon bilang Sandata</b> — Ibarra believed education = liberation. <em>Still true today fr.</em></li>
+          <li><b>Pag-ibig na Tragic</b> — Ibarra × Maria Clara = doomed ship. Parang kayang-kaya ng society ang pumipigil sa 'yo.</li>
+          <li><b>Rebolusyon vs Reporma</b> — Elias wants rebellion; Ibarra wants reform. The OG political debate.</li>
+          <li><b>Pagkakakilanlang Pilipino</b> — Sino ba tayong mga Pilipino? Still a question today tbh.</li>
+        </ul>
+        <div class="meme">Noli's message in 1 sentence: "Kung hindi tayo kikilos, tuloy ang abuso." Lowkey still hits in 2026. 😤</div>
+        <button class="mark-done secondary" data-mark="fil-noli-theme">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-talumpati">
+      <summary>1.4 — Pagsulat ng Talumpati (Speech Writing)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Talumpati = TED Talk in Filipino. Kung 'di ka interesante in the first 10 seconds, tapos ka na.</h4>
+        </div>
+        <p><b>3 Bahagi ng Talumpati:</b></p>
+        <ol class="steps">
+          <li><b>Panimula (Hook):</b> Mag-start ng katanungan, quote, o kakaibang fact. Like: "Alam n'yo bang 2 sa 5 Pilipino ay hindi nakakapagtapos ng hayskul?"</li>
+          <li><b>Katawan (Body):</b> 2–3 main points with evidence. Story > stats. Example over abstract.</li>
+          <li><b>Wakas (Call to Action):</b> Tell them what to DO. Hindi "salamat po" lang — bigyan sila ng mission.</li>
+        </ol>
+        <p><b>Mga Tayutay (Figures of Speech) para punchy ang speech:</b></p>
+        <table class="tbl">
+          <tr><th>Tayutay</th><th>Ibig Sabihin</th><th>Halimbawa</th></tr>
+          <tr><td><b>Pagtutulad (Simile)</b></td><td>Paghahambing gamit ang "tulad ng," "para kang"</td><td>"Tulad ng araw, sumisikat ang pag-asa."</td></tr>
+          <tr><td><b>Pagwawangis (Metapora)</b></td><td>Direct comparison, walang "parang"</td><td>"Ang buhay ay isang laro."</td></tr>
+          <tr><td><b>Personipikasyon</b></td><td>Bagay = parang tao ang kilos</td><td>"Kumakanta ang hangin."</td></tr>
+          <tr><td><b>Pagmamalabis (Hyperbole)</b></td><td>Sobra-sobra, exaggerated</td><td>"Isang milyong beses na kitang tinawagan."</td></tr>
+          <tr><td><b>Pag-uulit (Repetition)</b></td><td>Paulit-ulit para ma-emphasize</td><td>"Kaya natin, kaya natin, kaya natin."</td></tr>
+          <tr><td><b>Pagtatanong Retorikal</b></td><td>Tanong na 'di kailangan sagutin</td><td>"Hanggang kailan tayo mananahimik?"</td></tr>
+        </table>
+        <div class="interactive">
+          <h5>💡 Interactive: Build your hook</h5>
+          <p>Pumili ng paksa, then i-generate mo ang hook:</p>
+          <div class="row">
+            <select id="speech-topic">
+              <option>Climate Change</option>
+              <option>Mental Health</option>
+              <option>Edukasyon</option>
+              <option>Social Media</option>
+            </select>
+            <select id="speech-style">
+              <option>Shock Statistic</option>
+              <option>Rhetorical Question</option>
+              <option>Personal Story</option>
+            </select>
+            <button onclick="genHook()">Generate Hook</button>
+          </div>
+          <div class="output" id="speech-out">Pipindutin mo ang button...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="fil-talumpati">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-noli-chapters">
+      <summary>1.5 — Mga Pinakaimportanteng Kabanata ng Noli (buod)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>'Di kailangang basahin lahat ng 64 chapters. These are the "major plot points" — kailangan mong alam 'to sa quiz.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Kab.</th><th>Pamagat</th><th>Ano nangyari</th></tr>
+          <tr><td>1</td><td>Isang Pagtitipon</td><td>Kapitan Tiago's dinner party. Introduction of characters. Ibarra arrives from Europe.</td></tr>
+          <tr><td>3</td><td>Ang Hapunan</td><td>Padre Damaso disses Ibarra's late father, Don Rafael. Shade level: nuclear.</td></tr>
+          <tr><td>5</td><td>Isang Bituin sa Gabing Madilim</td><td>Ibarra reunites with Maria Clara at her house. Classic love scene.</td></tr>
+          <tr><td>10</td><td>Ang Bayan ng San Diego</td><td>Setting introduced — ang typical na Pilipinong bayan under Spanish rule.</td></tr>
+          <tr><td>16</td><td>Si Sisa</td><td>Si Sisa naghanap ng kanyang mga anak. Heartbreaking.</td></tr>
+          <tr><td>30</td><td>Sa Simbahan</td><td>Padre Damaso's sermon. Subtly attacks Ibarra.</td></tr>
+          <tr><td>33</td><td>Kamay na Makapangyarihan</td><td>Elias saves Ibarra from a falling beam (assassination attempt).</td></tr>
+          <tr><td>49</td><td>Ang Tinig ng mga Pinag-uusig</td><td>Elias reveals his backstory — sinubukan din ng lipunan ang family niya.</td></tr>
+          <tr><td>60</td><td>Si Maria Clara ay Mag-aasawa</td><td>Nalaman ni Maria Clara na si Padre Damaso ang totoong tatay niya. 😱</td></tr>
+          <tr><td>63</td><td>Gabi ng Pasko</td><td>Climax: Elias dies in place of Ibarra. Basilio arrives. "Ako'y mamamatay nang 'di nakikita ang liwanag ng bukang-liwayway..."</td></tr>
+          <tr><td>64</td><td>Epilogo</td><td>What happened to each character. Maria Clara goes to a convent. Tragic.</td></tr>
+        </table>
+        <div class="meme">Padre Damaso is literally Maria Clara's bio-dad. That's why he was SO against Ibarra. Full telenovela energy. 🤯</div>
+        <button class="mark-done secondary" data-mark="fil-noli-chapters">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-tayutay-full">
+      <summary>1.6 — Complete Tayutay (Figures of Speech) Cheat Sheet</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Tayutay = "fancy way of saying stuff." Bawat uri = different flavor ng drama.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Tayutay</th><th>Definisyon</th><th>Halimbawa</th></tr>
+          <tr><td>Pagtutulad (Simile)</td><td>Paghahambing gamit "tulad ng," "parang"</td><td>Matigas ang ulo niya <b>tulad ng bato</b>.</td></tr>
+          <tr><td>Pagwawangis (Metapora)</td><td>Direct comparison, walang conjunction</td><td>Ang guro ay <b>pangalawang magulang</b>.</td></tr>
+          <tr><td>Personipikasyon</td><td>Bagay → parang tao</td><td><b>Humihikbi ang langit</b> nang umulan.</td></tr>
+          <tr><td>Pagmamalabis (Hyperbole)</td><td>Sobra-sobra para mabigyang-diin</td><td><b>Libong beses</b> na kitang sinabihan.</td></tr>
+          <tr><td>Pag-uyam (Sarcasm/Irony)</td><td>Tinatag-ay ngunit pang-insulto</td><td>"Ang galing mo!" (pero 0/10 score niya)</td></tr>
+          <tr><td>Pagtawag (Apostrophe)</td><td>Kinakausap ang wala / bagay</td><td><b>O, buwan</b>, ikaw ba'y kasama ko?</td></tr>
+          <tr><td>Paglilipat-wika (Metonymy)</td><td>Gamit ang katangian bilang representation</td><td>Ang <b>Malacañang</b> ay nagsabi... (ibig sabihin: Pangulo)</td></tr>
+          <tr><td>Pagpapalit-tawag (Synecdoche)</td><td>Parte → buong bagay o vice versa</td><td>Kumain na ba ang <b>bibig</b> mo? (ibig sabihin: ikaw)</td></tr>
+          <tr><td>Pag-uulit (Repetition)</td><td>Paulit-ulit para sa emphasis</td><td><b>Kaya mo, kaya mo, kaya mo.</b></td></tr>
+          <tr><td>Pagtatanong Retorikal</td><td>Tanong na di tunay</td><td>Hanggang kailan tayo magtitiis?</td></tr>
+          <tr><td>Aliterasyon</td><td>Paulit-ulit na unang titik</td><td><b>M</b>alayo <b>m</b>ang <b>m</b>arating ang <b>m</b>ithiin.</td></tr>
+          <tr><td>Onomatopeya</td><td>Salitang katunog ng tunog</td><td>Tumilaok ang manok: <b>kukurukutok!</b></td></tr>
+        </table>
+        <div class="interactive">
+          <h5>💡 Interactive: Tayutay Identifier</h5>
+          <div class="row">
+            <input type="text" id="tay-in" placeholder="Type a line: e.g. Humihikbi ang langit"/>
+            <button onclick="idTayutay()">Identify</button>
+          </div>
+          <div class="output" id="tay-out">Result dito...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="fil-tayutay-full">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="fil-q2">
+    <summary>Ikalawang Markahan: Tula, Maikling Kwento, Sanaysay <span class="badge">Q2</span></summary>
+
+    <details class="leaf" data-topic="fil-tula">
+      <summary>2.1 — Tula: sukat, tugma, at talinghaga</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Tula = rap without the beat. Same rules: rhyme, rhythm, punchlines (talinghaga).</h4>
+        </div>
+        <p><b>Tatlong Sangkap ng Tula:</b></p>
+        <ul>
+          <li><b>Sukat</b> — bilang ng pantig bawat linya. Like syllables sa rap bar. Example: 8-8-8-8 (gitgit) or 12-12-12-12 (plosa).</li>
+          <li><b>Tugma</b> — rhyme pattern. Parang AABB o ABAB.</li>
+          <li><b>Talinghaga</b> — figurative meaning. Hindi literal. Layer of meaning na hindi nakikita agad.</li>
+        </ul>
+        <div class="analogy"><b>🔥 Analogy:</b> Andrew E at Francis M = mga makatang Pilipino ng 90s. Kung maintindihan mo sila, kaya mo ring intindihin si Balagtas.</div>
+        <div class="interactive">
+          <h5>💡 Interactive: Pantig Counter</h5>
+          <p>I-type ang isang linya, bilangin nito ang pantig:</p>
+          <div class="row">
+            <input type="text" id="pantig-in" placeholder="Halimbawa: Ang buhay ay parang ilog" />
+            <button onclick="countPantig()">Bilangin</button>
+          </div>
+          <div class="output" id="pantig-out">Bilang ng pantig lalabas dito...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="fil-tula">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-maikli">
+      <summary>2.2 — Maikling Kwento: The Filipino Short Story Structure</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Maikling kwento = TikTok video in text. Mabilisan, may hook, may twist.</h4>
+        </div>
+        <p><b>5 Bahagi ng Banghay (Plot):</b></p>
+        <ol class="steps">
+          <li><b>Simula</b> — introduction ng tauhan at tagpuan. (The setup)</li>
+          <li><b>Saglit na Kasiglahan</b> — may unang hint ng problem. (The inciting incident)</li>
+          <li><b>Tunggalian</b> — ang conflict mismo. Character vs character / society / sarili.</li>
+          <li><b>Kasukdulan (Climax)</b> — highest tension point. Pinakamasagwa o pinakamainit.</li>
+          <li><b>Wakas / Kakalasan</b> — resolution, may aral na bitbit.</li>
+        </ol>
+        <p><b>Common na tipo ng tunggalian:</b></p>
+        <ul>
+          <li><b>Tao vs Tao</b> — classic rivalry</li>
+          <li><b>Tao vs Sarili</b> — internal, mental health battles</li>
+          <li><b>Tao vs Lipunan</b> — kontra sa sistema</li>
+          <li><b>Tao vs Kalikasan</b> — baha, lindol, etc.</li>
+        </ul>
+        <button class="mark-done secondary" data-mark="fil-maikli">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-sanaysay">
+      <summary>2.3 — Sanaysay (Essay): Personal at Pormal</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Sanaysay = opinion piece. Parang Twitter thread pero may paragraphs.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Tipo</th><th>Description</th><th>Ganern</th></tr>
+          <tr><td><b>Personal</b></td><td>Galing sa karanasan mo. "I" lang.</td><td>Blog post / journal entry</td></tr>
+          <tr><td><b>Pormal</b></td><td>Research-based, may tesis at ebidensya.</td><td>Academic paper</td></tr>
+        </table>
+        <p><b>Structure ng isang maayos na sanaysay:</b></p>
+        <ol class="steps">
+          <li><b>Introduction</b> — hook + tesis (main point).</li>
+          <li><b>Body (2–4 paragraphs)</b> — isang idea per paragraph, may ebidensya o halimbawa.</li>
+          <li><b>Konklusyon</b> — balik sa tesis + insight.</li>
+        </ol>
+        <button class="mark-done secondary" data-mark="fil-sanaysay">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-balagtasan">
+      <summary>2.4 — Balagtasan: Rap Battle ni Balagtas</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Balagtasan = poetic debate. 2 tao (Lakandiwa at Lakambini), isang issue, nagde-debate via tula.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> FlipTop + college debate + spoken word = Balagtasan. May punchlines, may argument, may rhyme scheme. 100% Pinoy culture.</div>
+        <p><b>Mga tauhan:</b></p>
+        <ul>
+          <li><b>Lakandiwa</b> — representing one side</li>
+          <li><b>Lakambini</b> — representing the other</li>
+          <li><b>Punong-Abala / Hari ng Balagtasan</b> — judge/moderator</li>
+        </ul>
+        <p><b>Structure:</b></p>
+        <ol class="steps">
+          <li>Pagbati at pagpapakilala</li>
+          <li>Paglalahad ng paksa</li>
+          <li>Pagtatalo (back-and-forth arguments)</li>
+          <li>Konklusyon at hatol</li>
+        </ol>
+        <p>Named after <b>Francisco Balagtas</b> (Baltazar), the poet behind <em>Florante at Laura</em>. Balagtasan became a tradition in the 1920s.</p>
+        <button class="mark-done secondary" data-mark="fil-balagtasan">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="fil-q3">
+    <summary>Ikatlong Markahan: Gramatika at Balarila <span class="badge">Q3</span></summary>
+
+    <details class="leaf" data-topic="fil-pang-uri">
+      <summary>3.1 — Pang-uri (Adjectives) + kaantasan</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Pang-uri = adjectives. Ang describe ng pangngalan (noun). Parang filter sa Instagram.</h4>
+        </div>
+        <p><b>3 Antas ng Pang-uri:</b></p>
+        <table class="tbl">
+          <tr><th>Antas</th><th>Use</th><th>Halimbawa</th></tr>
+          <tr><td><b>Lantay</b></td><td>Plain, walang comparison</td><td>maganda, matalino</td></tr>
+          <tr><td><b>Pahambing</b></td><td>Compare 2 items</td><td>mas maganda, kasintalino</td></tr>
+          <tr><td><b>Pasukdol</b></td><td>Superlative — pinaka highest</td><td>pinakamaganda, ubod ng ganda</td></tr>
+        </table>
+        <div class="interactive">
+          <h5>💡 Interactive: Identify the Antas</h5>
+          <div class="row">
+            <input type="text" id="antas-in" placeholder="Halimbawa: pinakamagaling" />
+            <button onclick="checkAntas()">Check</button>
+          </div>
+          <div class="output" id="antas-out">Result lalabas dito...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="fil-pang-uri">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-pang-abay">
+      <summary>3.2 — Pang-abay (Adverbs)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Pang-abay = modifier ng pandiwa (verb), pang-uri, o kapwa pang-abay.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Uri</th><th>Sagot Sa</th><th>Halimbawa</th></tr>
+          <tr><td>Pamanahon</td><td>Kailan?</td><td>kanina, bukas, tuwing umaga</td></tr>
+          <tr><td>Panlunan</td><td>Saan?</td><td>dito, sa Maynila, sa labas</td></tr>
+          <tr><td>Pamaraan</td><td>Paano?</td><td>mabilis, dahan-dahan</td></tr>
+          <tr><td>Panggaano</td><td>Gaano?</td><td>sobra, medyo, kaunti</td></tr>
+          <tr><td>Pang-agam</td><td>Posibilidad</td><td>siguro, marahil, baka</td></tr>
+        </table>
+        <button class="mark-done secondary" data-mark="fil-pang-abay">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-pandiwa">
+      <summary>3.3 — Pandiwa at mga Aspekto nito</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Pandiwa = verb. Aspekto = timing. Kelan nangyari, nangyayari, o mangyayari?</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Aspekto</th><th>Meaning</th><th>Halimbawa (kumain)</th></tr>
+          <tr><td><b>Pangnagdaan</b></td><td>Past (nangyari na)</td><td>kumain</td></tr>
+          <tr><td><b>Pangkasalukuyan</b></td><td>Present (nagaganap)</td><td>kumakain</td></tr>
+          <tr><td><b>Panghinaharap</b></td><td>Future (mangyayari)</td><td>kakain</td></tr>
+          <tr><td><b>Pawatas</b></td><td>Walang panahon (infinitive)</td><td>kumain</td></tr>
+        </table>
+        <button class="mark-done secondary" data-mark="fil-pandiwa">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-pangungusap">
+      <summary>3.4 — Uri ng Pangungusap ayon sa Gamit at Anyo</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Pangungusap = sentence. Uri depende sa function + structure.</h4>
+        </div>
+        <p><b>Ayon sa Gamit:</b></p>
+        <table class="tbl">
+          <tr><th>Uri</th><th>Gamit</th><th>Bantas sa dulo</th><th>Halimbawa</th></tr>
+          <tr><td>Pasalaysay</td><td>Nagsasabi ng fact</td><td>.</td><td>Umulan kahapon.</td></tr>
+          <tr><td>Patanong</td><td>Nagtatanong</td><td>?</td><td>Kumain ka na ba?</td></tr>
+          <tr><td>Pautos/Pakiusap</td><td>Nag-uutos/humihiling</td><td>. o !</td><td>Linisin mo ang kwarto.</td></tr>
+          <tr><td>Padamdam</td><td>Nagpapahayag ng damdamin</td><td>!</td><td>Napakaganda ng tanawin!</td></tr>
+        </table>
+        <p><b>Ayon sa Anyo:</b></p>
+        <table class="tbl">
+          <tr><th>Uri</th><th>Description</th></tr>
+          <tr><td>Payak</td><td>1 simuno, 1 panaguri</td></tr>
+          <tr><td>Tambalan</td><td>2 simpleng pangungusap pinag-isa (at, ngunit, o)</td></tr>
+          <tr><td>Hugnayan</td><td>1 pangunahin + 1 pang-ibaba (dahil, kapag, kung)</td></tr>
+          <tr><td>Langkapan</td><td>Tambalan + hugnayan combo</td></tr>
+        </table>
+        <button class="mark-done secondary" data-mark="fil-pangungusap">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="fil-q4">
+    <summary>Ikaapat na Markahan: Pananaliksik at Pagsulat <span class="badge">Q4</span></summary>
+
+    <details class="leaf" data-topic="fil-research">
+      <summary>4.1 — Simpleng Pananaliksik: Pag-cite ng Sources</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Kung 'di mo i-cite ang pinagkunan mo, plagiarism 'yon. Parang pinapasa mo ulo ng iba as sa'yo.</h4>
+        </div>
+        <p><b>Basic APA Cite:</b></p>
+        <div class="formula">Apelyido, Unang titik ng pangalan. (Taon). <i>Pamagat ng libro</i>. Publisher.</div>
+        <p><b>Example:</b></p>
+        <div class="formula">Rizal, J. (1887). <i>Noli Me Tangere</i>. Berliner Buchdruckerei.</div>
+        <button class="mark-done secondary" data-mark="fil-research">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="fil-wakas">
+      <summary>4.2 — Panghuling Review: Paano mag-aral ng Filipino kung ayaw mo</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Ang secret: consume Filipino content. Movies, songs, podcasts. Brain treats Tagalog as second language kasi English ang default mo.</h4>
+        </div>
+        <ul>
+          <li>📺 Panoorin: <em>Heneral Luna</em>, <em>Goyo</em>, <em>Dekada '70</em>. Literal na makakatulong sa panitikan.</li>
+          <li>🎵 Makinig: Parokya ni Edgar, Eraserheads, Ben&Ben — matututo ka ng bokabularyo.</li>
+          <li>📖 Basahin: Wattpad sa Tagalog. Literally the gateway.</li>
+          <li>✍️ Isulat: Journal in Tagalog. 5 sentences lang per day.</li>
+        </ul>
+        <div class="meme">Reality check: "Nakakapagsalita ako ng English pero hindi Filipino" ≠ flex. That's called losing your native language. Sad actually. 😬</div>
+        <button class="mark-done secondary" data-mark="fil-wakas">✅ Tapos ko na ito</button>
+      </div>
+    </details>
+  </details>
+</section>
+
+<!-- ============ MATH ============ -->
+<section class="panel" id="panel-math">
+  <div class="hero">
+    <h2>🧮 Mathematics 9 — Quadratics, Variations, Geometry, Trig</h2>
+    <p>Math is not memorization. It's <b>patterns</b>. Kapag nakita mo ang pattern, game over ang questions. Every topic here comes with interactive solvers that show every step.</p>
+    <div class="progressbar"><span id="prog-math"></span></div>
+  </div>
+
+  <details class="branch" data-sec="math-q1">
+    <summary>Quarter 1: Quadratic Equations & Functions <span class="badge">Q1</span></summary>
+
+    <details class="leaf" data-topic="math-quad-intro">
+      <summary>1.1 — What the heck is a Quadratic Equation?</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Quadratic = equation na may x². Simple as that.</h4>
+          <p>Standard form: <span class="math">ax² + bx + c = 0</span> — where a ≠ 0.</p>
+        </div>
+        <div class="analogy">
+          <b>🔥 Analogy:</b> Imagine throwing a basketball. The path it makes in the air? That's a <b>parabola</b> — a quadratic. So every time si LeBron nag-shoot, that's literal quadratic motion. Math ≠ useless.
+        </div>
+        <p><b>Identify the a, b, c:</b></p>
+        <div class="formula">2x² + 5x - 3 = 0  →  a = 2, b = 5, c = -3</div>
+        <div class="formula">x² - 7 = 0        →  a = 1, b = 0, c = -7</div>
+        <div class="interactive">
+          <h5>💡 Interactive: Standard Form Identifier</h5>
+          <p>Enter coefficients and see the equation:</p>
+          <div class="row">
+            a = <input type="number" id="sf-a" value="1"/>
+            b = <input type="number" id="sf-b" value="-5"/>
+            c = <input type="number" id="sf-c" value="6"/>
+            <button onclick="showStdForm()">Show</button>
+          </div>
+          <div class="output" id="sf-out">Click Show...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-quad-intro">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-factor">
+      <summary>1.2 — Solving by Factoring (AC method)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Factoring = reverse of multiplying. Hinahanap mo ang 2 binomials na nag-multiply para maging quadratic.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Meron kang 12. What 2 numbers mo i-multiply para makakuha ng 12? 3×4, 6×2, 12×1. Same concept — but with x.</div>
+        <p><b>Example:</b> Solve <span class="math">x² - 5x + 6 = 0</span></p>
+        <ol class="steps">
+          <li><b>Find 2 numbers</b> na mag-multiply to c (6) and add to b (-5). → <b>-2 and -3</b> (since -2 × -3 = 6, -2 + -3 = -5).</li>
+          <li><b>Rewrite as product</b>: (x - 2)(x - 3) = 0</li>
+          <li><b>Zero Product Property</b>: kung AB=0, then A=0 OR B=0. So x - 2 = 0 OR x - 3 = 0.</li>
+          <li><b>Solve each</b>: x = 2, x = 3. <b>Tapos.</b> These are the roots.</li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Factoring Solver</h5>
+          <p>Form: x² + bx + c = 0</p>
+          <div class="row">
+            b = <input type="number" id="fac-b" value="-5"/>
+            c = <input type="number" id="fac-c" value="6"/>
+            <button onclick="solveFactor()">Solve Step-by-Step</button>
+          </div>
+          <div class="output" id="fac-out">Click Solve to see steps...</div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-quad-factor">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-sqrt">
+      <summary>1.3 — Solving by Extracting Square Roots</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Gamit ito kapag walang "bx" term. Form: x² = k.</h4>
+        </div>
+        <p><b>Example:</b> Solve <span class="math">x² = 49</span></p>
+        <ol class="steps">
+          <li>Take square root both sides: <span class="math">x = ±√49</span></li>
+          <li>√49 = 7 (remember ang <b>±</b>! +7 at -7 are both solutions, kasi (-7)² = 49 din)</li>
+          <li><b>Answer</b>: x = 7 or x = -7</li>
+        </ol>
+        <div class="meme">99% ng errors dito: kinakalimutan ang ±. Isa lang sinasagot. Then -5 points ka. 💀</div>
+        <div class="interactive">
+          <h5>💡 Interactive: Square Root Solver</h5>
+          <div class="row">
+            x² = <input type="number" id="sqrt-k" value="49"/>
+            <button onclick="solveSqrt()">Solve</button>
+          </div>
+          <div class="output" id="sqrt-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-quad-sqrt">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-formula">
+      <summary>1.4 — The Quadratic Formula (The God-Tier Solver)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Kung di mo ma-factor, gamitin mo ito. ALWAYS WORKS.</h4>
+        </div>
+        <div class="formula" style="font-size:18px;text-align:center">
+          x = ( -b ± √(b² - 4ac) ) / ( 2a )
+        </div>
+        <div class="analogy"><b>🔥 Memory hack:</b> There's a song! "x is equal to negative b, plus or minus the square root, of b-squared minus four a c, all over two a." — sing it to the tune of "Pop Goes the Weasel." Legit.</div>
+        <p><b>Example:</b> Solve <span class="math">2x² + 3x - 5 = 0</span> (a=2, b=3, c=-5)</p>
+        <ol class="steps">
+          <li>Compute discriminant: <b>b² - 4ac</b> = 9 - 4(2)(-5) = 9 + 40 = <b>49</b></li>
+          <li>√49 = 7</li>
+          <li>x = (-3 ± 7) / (2·2) = (-3 ± 7) / 4</li>
+          <li>x₁ = (-3 + 7)/4 = 4/4 = <b>1</b></li>
+          <li>x₂ = (-3 - 7)/4 = -10/4 = <b>-5/2</b></li>
+          <li><b>Answer:</b> x = 1 or x = -5/2</li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Quadratic Formula Solver</h5>
+          <div class="row">
+            a = <input type="number" id="qf-a" value="2"/>
+            b = <input type="number" id="qf-b" value="3"/>
+            c = <input type="number" id="qf-c" value="-5"/>
+            <button onclick="solveQuadFormula()">Solve with Steps</button>
+          </div>
+          <div class="output" id="qf-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-quad-formula">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-disc">
+      <summary>1.5 — Nature of Roots: The Discriminant</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>The <b>discriminant</b> D = b² - 4ac tells you the "personality" of the roots WITHOUT solving.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>D (b²-4ac)</th><th>Kind of Roots</th><th>Meaning IRL</th></tr>
+          <tr><td>D > 0, perfect square</td><td>2 real, rational, unequal</td><td>Parabola cuts x-axis sa 2 "clean" points</td></tr>
+          <tr><td>D > 0, NOT perfect square</td><td>2 real, irrational, unequal</td><td>2 messy decimal roots</td></tr>
+          <tr><td>D = 0</td><td>1 real, repeated root</td><td>Parabola touches x-axis sa 1 point lang (tangent)</td></tr>
+          <tr><td>D < 0</td><td>No real roots (imaginary)</td><td>Parabola doesn't touch x-axis at all</td></tr>
+        </table>
+        <div class="interactive">
+          <h5>💡 Interactive: Discriminant Classifier</h5>
+          <div class="row">
+            a = <input type="number" id="dis-a" value="1"/>
+            b = <input type="number" id="dis-b" value="4"/>
+            c = <input type="number" id="dis-c" value="4"/>
+            <button onclick="classifyDisc()">Classify</button>
+          </div>
+          <div class="output" id="dis-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-quad-disc">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-function">
+      <summary>1.6 — Quadratic Function & the Parabola (Vertex, Axis)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>f(x) = ax² + bx + c is a <b>function</b>. Graph nito = <b>parabola</b> (U-shape).</h4>
+        </div>
+        <ul>
+          <li><b>If a > 0</b>: opens up 🙂 (minimum point)</li>
+          <li><b>If a < 0</b>: opens down 🙁 (maximum point)</li>
+          <li><b>Vertex</b>: yung tip ng U. Coordinates: <span class="math">(-b/2a, f(-b/2a))</span></li>
+          <li><b>Axis of symmetry</b>: vertical line, x = -b/2a</li>
+        </ul>
+        <div class="interactive">
+          <h5>💡 Interactive: Parabola Vertex Finder</h5>
+          <div class="row">
+            a = <input type="number" id="par-a" value="1"/>
+            b = <input type="number" id="par-b" value="-6"/>
+            c = <input type="number" id="par-c" value="8"/>
+            <button onclick="findVertex()">Find Vertex</button>
+          </div>
+          <div class="output" id="par-out"></div>
+          <canvas id="par-canvas" width="400" height="280" style="background:#0a0f1f;border-radius:8px;margin-top:10px;max-width:100%"></canvas>
+        </div>
+        <button class="mark-done secondary" data-mark="math-quad-function">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-complete-sq">
+      <summary>1.7 — Completing the Square</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Completing the square = forcing the equation into a "perfect square" form so you can sqrt it.</h4>
+        </div>
+        <p><b>Formula pattern:</b></p>
+        <div class="formula">(x + h)² = x² + 2hx + h²    ← memorize this pattern</div>
+        <p><b>Example:</b> Solve x² + 6x - 7 = 0</p>
+        <ol class="steps">
+          <li>Move constant: x² + 6x = 7</li>
+          <li>Take half of b (6/2 = 3), square it (3² = 9), add to both sides:<br/>x² + 6x + 9 = 7 + 9</li>
+          <li>Left side is now perfect square: (x + 3)² = 16</li>
+          <li>Take √: x + 3 = ±4</li>
+          <li>Solve: x = -3 + 4 = <b>1</b> or x = -3 - 4 = <b>-7</b></li>
+        </ol>
+        <div class="analogy"><b>🔥 Analogy:</b> Parang Legos. Binibigay ka ng kulang na set — dapat alam mo kung anong piece ang idadag para maging complete square (perfect cube sa metaphors natin).</div>
+        <div class="interactive">
+          <h5>💡 Interactive: Completing the Square (for x² + bx + c = 0)</h5>
+          <div class="row">
+            b = <input type="number" id="cs-b" value="6"/>
+            c = <input type="number" id="cs-c" value="-7"/>
+            <button onclick="completeSq()">Solve with steps</button>
+          </div>
+          <div class="output" id="cs-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-complete-sq">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-ineq">
+      <summary>1.8 — Quadratic Inequalities</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Instead of solving ax² + bx + c = 0, we solve ax² + bx + c &lt; 0 or &gt; 0. Answer = a <b>range</b> of x, not single values.</h4>
+        </div>
+        <p><b>Steps to solve:</b></p>
+        <ol class="steps">
+          <li>Solve the equation as if = 0. Get the roots (critical points).</li>
+          <li>Mark the roots on a number line.</li>
+          <li>Test a value sa bawat region (left, between, right).</li>
+          <li>Kung gumagana sa inequality, that region is part of the solution.</li>
+        </ol>
+        <p><b>Example:</b> Solve x² - 5x + 6 &lt; 0</p>
+        <ol class="steps">
+          <li>Roots: x = 2, x = 3 (via factoring).</li>
+          <li>Regions: (-∞, 2), (2, 3), (3, ∞)</li>
+          <li>Test x = 0: 0 - 0 + 6 = 6 (not &lt; 0) ❌</li>
+          <li>Test x = 2.5: 6.25 - 12.5 + 6 = -0.25 (&lt; 0) ✓</li>
+          <li>Test x = 4: 16 - 20 + 6 = 2 (not &lt; 0) ❌</li>
+          <li>✅ Answer: <b>2 &lt; x &lt; 3</b></li>
+        </ol>
+        <div class="meme">Parabola opens UP? Kung "&lt; 0," middle region ang sagot (between roots). Kung "&gt; 0," outer regions. Chika lang.</div>
+        <button class="mark-done secondary" data-mark="math-quad-ineq">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-quad-word">
+      <summary>1.9 — Quadratic Word Problems</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Word problems look intimidating pero same concept lang. Translate words → equation.</h4>
+        </div>
+        <p><b>Translation cheat sheet:</b></p>
+        <ul>
+          <li>"Product ng dalawang numero" → xy</li>
+          <li>"Sum" → +, "Difference" → -</li>
+          <li>"Area" = length × width</li>
+          <li>"2 consecutive integers" → x, x+1</li>
+          <li>"2 consecutive even integers" → x, x+2</li>
+        </ul>
+        <p><b>Example:</b> Ang kuwadrado ng isang numero ay 6 na higit kaysa 5 beses ng numero. Hanapin ang numero.</p>
+        <ol class="steps">
+          <li>Let x = ang numero. Equation: x² = 5x + 6</li>
+          <li>Rearrange: x² - 5x - 6 = 0</li>
+          <li>Factor: (x - 6)(x + 1) = 0</li>
+          <li>Roots: x = 6 or x = -1</li>
+          <li>Check both: 6² = 36 = 5(6) + 6 = 36 ✓ | (-1)² = 1 = 5(-1) + 6 = 1 ✓</li>
+          <li><b>Answer: 6 o -1</b></li>
+        </ol>
+        <p><b>Example 2 (Area):</b> Ang haba ay 3m na mas mahaba kaysa lapad. Area = 40 m². Find dimensions.</p>
+        <ol class="steps">
+          <li>Let w = lapad, haba = w + 3</li>
+          <li>w(w+3) = 40 → w² + 3w - 40 = 0</li>
+          <li>Factor: (w + 8)(w - 5) = 0</li>
+          <li>w = -8 (reject, negative) or w = 5</li>
+          <li><b>Answer: Lapad = 5m, Haba = 8m</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-quad-word">✅ Done</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="math-q2">
+    <summary>Quarter 2: Variations + Radicals <span class="badge">Q2</span></summary>
+
+    <details class="leaf" data-topic="math-var-direct">
+      <summary>2.1 — Direct Variation (y = kx)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Direct variation: <b>"As x goes up, y goes up"</b> at the same ratio.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Kumakain ka ng chicken joy. 1 piece = ₱90. 2 pieces = ₱180. 5 pieces = ₱450. The cost varies directly as the number of pieces. Ratio ng cost:piece is constant (90).</div>
+        <div class="formula">y = kx  ←→  k = y/x  (k is the "constant of variation")</div>
+        <p><b>Example:</b> y varies directly as x. If y = 15 when x = 3, find y when x = 7.</p>
+        <ol class="steps">
+          <li>Find k: k = y/x = 15/3 = <b>5</b></li>
+          <li>Plug in x = 7: y = 5(7) = <b>35</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Direct Variation Solver</h5>
+          <div class="row">
+            Given y = <input type="number" id="dv-y1" value="15"/>
+            when x = <input type="number" id="dv-x1" value="3"/>,
+            find y when x = <input type="number" id="dv-x2" value="7"/>
+            <button onclick="solveDirectVar()">Solve</button>
+          </div>
+          <div class="output" id="dv-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-var-direct">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-var-inverse">
+      <summary>2.2 — Inverse Variation (y = k/x)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Inverse variation: <b>"As x goes up, y goes DOWN"</b> — but k (product) stays the same.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Mga workers sa project. 1 worker = 12 days. 2 workers = 6 days. 3 workers = 4 days. More workers = less time. Product is always 12 worker-days. That's inverse variation.</div>
+        <div class="formula">y = k/x  ←→  k = xy</div>
+        <p><b>Example:</b> y inversely varies as x. y = 10 when x = 4. Find y when x = 8.</p>
+        <ol class="steps">
+          <li>k = xy = 4·10 = <b>40</b></li>
+          <li>y = k/x = 40/8 = <b>5</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-var-inverse">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-var-joint">
+      <summary>2.3 — Joint & Combined Variation</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4><b>Joint:</b> y = kxz (varies directly as 2+ variables). <b>Combined:</b> mix of direct and inverse.</h4>
+        </div>
+        <div class="formula">Joint:    y = kxz
+Combined: y = kx/z</div>
+        <p><b>Example (Joint):</b> Area ng rectangle varies jointly as length and width. A = 24 when L=4, W=3. Find A when L=6, W=5.</p>
+        <ol class="steps">
+          <li>k = A/(LW) = 24/(4·3) = <b>2</b></li>
+          <li>A = k·L·W = 2(6)(5) = <b>60</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-var-joint">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-radicals">
+      <summary>2.4 — Radicals: Exponents ng Fractional Kind</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4><b>√x = x^(1/2)</b>. Radicals = fractional exponents. Same thing, different clothes.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Notation</th><th>Meaning</th></tr>
+          <tr><td>x^(1/2)</td><td>Square root</td></tr>
+          <tr><td>x^(1/3)</td><td>Cube root</td></tr>
+          <tr><td>x^(m/n)</td><td>n-th root of x^m</td></tr>
+          <tr><td>x^(-n)</td><td>1/x^n (reciprocal)</td></tr>
+          <tr><td>x^0</td><td>1 (always, as long as x ≠ 0)</td></tr>
+        </table>
+        <p><b>Simplifying √72:</b></p>
+        <ol class="steps">
+          <li>Find largest perfect square factor: 72 = 36 · 2</li>
+          <li>√72 = √(36·2) = √36 · √2 = <b>6√2</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Radical Simplifier</h5>
+          <div class="row">
+            √<input type="number" id="rad-n" value="72"/>
+            <button onclick="simplifyRad()">Simplify</button>
+          </div>
+          <div class="output" id="rad-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-radicals">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-exp-laws">
+      <summary>2.5 — Laws of Exponents (Zero, Negative, Rational)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Exponents = short-hand for repeated multiplication. Laws = rules for combining them.</h4>
+        </div>
+        <div class="formula">Product:   x^m · x^n = x^(m+n)
+Quotient:  x^m / x^n = x^(m-n)
+Power:     (x^m)^n = x^(m·n)
+Zero:      x^0 = 1   (kahit ano, basta x ≠ 0)
+Negative:  x^(-n) = 1 / x^n
+Rational:  x^(m/n) = ⁿ√(x^m)</div>
+        <p><b>Examples:</b></p>
+        <ul>
+          <li>3⁴ · 3² = 3^6 = 729</li>
+          <li>5⁰ = 1 (yes, even 5⁰!)</li>
+          <li>2^(-3) = 1/8</li>
+          <li>8^(2/3) = ∛(8²) = ∛64 = 4</li>
+        </ul>
+        <div class="interactive">
+          <h5>💡 Interactive: Exponent Calculator</h5>
+          <div class="row">
+            base = <input type="number" id="ex-b" value="2"/>
+            exponent = <input type="text" id="ex-e" value="-3" style="width:80px"/>
+            <button onclick="calcExp()">Compute</button>
+          </div>
+          <div class="output" id="ex-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-exp-laws">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-rad-ops">
+      <summary>2.6 — Operations on Radicals (Add, Subtract, Multiply, Divide)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Radicals work like variables. Like terms lang ang pwede magsama.</h4>
+        </div>
+        <p><b>Adding/Subtracting:</b> only combine LIKE radicals (same number inside).</p>
+        <div class="formula">3√2 + 5√2 = 8√2      ✓
+3√2 + 5√3 = 3√2 + 5√3  (can't combine)</div>
+        <p><b>Multiplying:</b> √a · √b = √(ab)</p>
+        <div class="formula">√3 · √12 = √36 = 6
+2√5 · 3√5 = 6 · 5 = 30</div>
+        <p><b>Dividing / Rationalizing denominator:</b> Multiply top and bottom by the radical to remove it from the bottom.</p>
+        <div class="formula">3/√2 · (√2/√2) = 3√2/2</div>
+        <p><b>Example:</b> Simplify 2√18 + 3√8 - √50</p>
+        <ol class="steps">
+          <li>Simplify each: 2√18 = 2·3√2 = 6√2</li>
+          <li>3√8 = 3·2√2 = 6√2</li>
+          <li>√50 = 5√2</li>
+          <li>Combine: 6√2 + 6√2 - 5√2 = <b>7√2</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-rad-ops">✅ Done</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="math-q3">
+    <summary>Quarter 3: Quadrilaterals & Triangle Similarity <span class="badge">Q3</span></summary>
+
+    <details class="leaf" data-topic="math-parallelogram">
+      <summary>3.1 — Parallelogram Properties</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Parallelogram = 4-sided shape na ang opposite sides are parallel & equal.</h4>
+        </div>
+        <p><b>Key properties (MEMORIZE):</b></p>
+        <ul>
+          <li>Opposite sides are <b>parallel</b> (AB ∥ CD)</li>
+          <li>Opposite sides are <b>congruent</b> (AB = CD)</li>
+          <li>Opposite angles are <b>congruent</b> (∠A = ∠C)</li>
+          <li>Consecutive angles are <b>supplementary</b> (∠A + ∠B = 180°)</li>
+          <li><b>Diagonals bisect each other</b> (meet at midpoint)</li>
+        </ul>
+        <p><b>Special parallelograms:</b></p>
+        <table class="tbl">
+          <tr><th>Shape</th><th>Extra Property</th></tr>
+          <tr><td><b>Rectangle</b></td><td>All angles = 90°. Diagonals are congruent.</td></tr>
+          <tr><td><b>Rhombus</b></td><td>All sides equal. Diagonals perpendicular + bisect angles.</td></tr>
+          <tr><td><b>Square</b></td><td>Rectangle + Rhombus combined. Ultimate parallelogram.</td></tr>
+        </table>
+        <button class="mark-done secondary" data-mark="math-parallelogram">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-similarity">
+      <summary>3.2 — Triangle Similarity (AA, SSS, SAS)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Similar triangles = same shape, different size. Like photocopying with zoom.</h4>
+        </div>
+        <p><b>Postulates/Theorems for proving similarity:</b></p>
+        <ul>
+          <li><b>AA (Angle-Angle):</b> If 2 angles match, triangles are similar.</li>
+          <li><b>SSS Similarity:</b> If all 3 sides are in proportion, similar.</li>
+          <li><b>SAS Similarity:</b> If 2 sides proportional + included angle equal, similar.</li>
+        </ul>
+        <div class="analogy"><b>🔥 Analogy:</b> A phone screenshot and the original photo — same picture, different pixels. Proportions match. Similarity.</div>
+        <p><b>Example:</b> Triangles ABC and DEF. ∠A = ∠D, AB/DE = 2, AC/DF = 2. Are they similar?</p>
+        <ol class="steps">
+          <li>Check: 2 sides proportional (ratio = 2) ✓</li>
+          <li>Check: included angle (∠A = ∠D) ✓</li>
+          <li>Conclusion: Similar by <b>SAS Similarity</b>.</li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-similarity">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-right-tri">
+      <summary>3.3 — Right Triangle Theorems (Pythagorean + 45-45-90, 30-60-90)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>In a right triangle, the longest side (opposite the 90°) = <b>hypotenuse</b>.</h4>
+        </div>
+        <div class="formula">Pythagorean: a² + b² = c²   (c = hypotenuse)</div>
+        <p><b>Special triangles (MUST memorize):</b></p>
+        <table class="tbl">
+          <tr><th>Triangle</th><th>Side ratios</th></tr>
+          <tr><td><b>45-45-90</b></td><td>1 : 1 : √2</td></tr>
+          <tr><td><b>30-60-90</b></td><td>1 : √3 : 2 (opposite 30°, 60°, 90°)</td></tr>
+        </table>
+        <div class="interactive">
+          <h5>💡 Interactive: Pythagorean Solver</h5>
+          <div class="row">
+            leg a = <input type="number" id="py-a" value="3"/>
+            leg b = <input type="number" id="py-b" value="4"/>
+            <button onclick="solvePyth()">Find c</button>
+          </div>
+          <div class="output" id="py-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-right-tri">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-trapezoid-kite">
+      <summary>3.4 — Trapezoids, Kites, & Midsegment Theorem</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4><b>Trapezoid:</b> eksakto 1 pair of parallel sides. <b>Kite:</b> 2 pairs of adjacent (magkasunod) congruent sides.</h4>
+        </div>
+        <p><b>Trapezoid key parts:</b></p>
+        <ul>
+          <li><b>Bases (b₁, b₂)</b> — ang parallel sides</li>
+          <li><b>Legs</b> — non-parallel sides</li>
+          <li><b>Midsegment</b> — connects midpoints of the legs. Length = (b₁ + b₂)/2</li>
+          <li><b>Isosceles trapezoid</b> — legs are congruent. Base angles are equal.</li>
+        </ul>
+        <p><b>Kite properties:</b></p>
+        <ul>
+          <li>2 pairs of adjacent sides = congruent</li>
+          <li>Diagonals are perpendicular</li>
+          <li>One diagonal bisects the other</li>
+          <li>Only 1 pair of opposite angles = congruent</li>
+        </ul>
+        <p><b>Triangle Midsegment Theorem:</b> a segment connecting midpoints of 2 sides of a triangle = parallel to the 3rd side AND HALF its length.</p>
+        <div class="formula">Area ng trapezoid = ½ · (b₁ + b₂) · h
+Area ng kite = ½ · d₁ · d₂   (diagonals multiplied, divided by 2)</div>
+        <div class="interactive">
+          <h5>💡 Interactive: Trapezoid Area</h5>
+          <div class="row">
+            b₁ = <input type="number" id="tr-b1" value="10"/>
+            b₂ = <input type="number" id="tr-b2" value="6"/>
+            height = <input type="number" id="tr-h2" value="4"/>
+            <button onclick="trapArea()">Compute</button>
+          </div>
+          <div class="output" id="tr-area-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-trapezoid-kite">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-prop-theorem">
+      <summary>3.5 — Proportion Theorems in Triangles</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Key idea: a line parallel to one side of a triangle divides the other two sides proportionally.</h4>
+        </div>
+        <p><b>Basic Proportionality Theorem (BPT / Thales'):</b> Kung guhit || sa isang side ng △, it cuts the other 2 sides in proportion.</p>
+        <div class="formula">Kung DE ∥ BC sa △ABC:
+AD/DB = AE/EC</div>
+        <p><b>Triangle Angle Bisector Theorem:</b> The bisector of an angle divides the opposite side proportionally to the other two sides.</p>
+        <div class="formula">Kung AD bisects ∠A at D sa BC:
+BD/DC = AB/AC</div>
+        <p><b>Example:</b> Sa △ABC, DE ∥ BC. AD = 3, DB = 6, AE = 4. Find EC.</p>
+        <ol class="steps">
+          <li>BPT: AD/DB = AE/EC</li>
+          <li>3/6 = 4/EC</li>
+          <li>Cross-multiply: 3·EC = 6·4 → EC = 24/3 = <b>8</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-prop-theorem">✅ Done</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="math-q4">
+    <summary>Quarter 4: Trigonometry <span class="badge">Q4</span></summary>
+
+    <details class="leaf" data-topic="math-sohcahtoa">
+      <summary>4.1 — SOH CAH TOA: The Gospel</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>For right triangles, ratios of sides depend on the angle. Memorize this ONCE, solve thousands of problems.</h4>
+        </div>
+        <div class="formula" style="text-align:center;font-size:16px">
+<b>SOH</b> → sin(θ) = Opposite / Hypotenuse
+<b>CAH</b> → cos(θ) = Adjacent / Hypotenuse
+<b>TOA</b> → tan(θ) = Opposite / Adjacent</div>
+        <div class="analogy"><b>🔥 Memory hack:</b> "Some Old Horse Caught Another Horse Taking Oats Away." Or just say SOH-CAH-TOA like a battle cry.</div>
+        <p><b>Example:</b> Right triangle, angle θ = 30°, hypotenuse = 10. Find the opposite side.</p>
+        <ol class="steps">
+          <li>We want "opposite," given hypotenuse → use SOH: sin(θ) = opp/hyp</li>
+          <li>sin(30°) = opp/10</li>
+          <li>sin(30°) = 0.5 (MEMORIZE common values!)</li>
+          <li>0.5 = opp/10 → <b>opp = 5</b></li>
+        </ol>
+        <p><b>Common angle values to memorize:</b></p>
+        <table class="tbl">
+          <tr><th>θ</th><th>sin</th><th>cos</th><th>tan</th></tr>
+          <tr><td>0°</td><td>0</td><td>1</td><td>0</td></tr>
+          <tr><td>30°</td><td>1/2</td><td>√3/2</td><td>√3/3</td></tr>
+          <tr><td>45°</td><td>√2/2</td><td>√2/2</td><td>1</td></tr>
+          <tr><td>60°</td><td>√3/2</td><td>1/2</td><td>√3</td></tr>
+          <tr><td>90°</td><td>1</td><td>0</td><td>undefined</td></tr>
+        </table>
+        <div class="interactive">
+          <h5>💡 Interactive: Trig Ratio Calculator</h5>
+          <div class="row">
+            θ (deg) = <input type="number" id="tr-ang" value="30"/>
+            Hypotenuse = <input type="number" id="tr-hyp" value="10"/>
+            <button onclick="calcTrig()">Find Opposite & Adjacent</button>
+          </div>
+          <div class="output" id="tr-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-sohcahtoa">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-elev-dep">
+      <summary>4.2 — Angle of Elevation & Depression (Word Problems)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4><b>Elevation</b> = looking UP. <b>Depression</b> = looking DOWN. Both are measured from the horizontal.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> You're at ground level, looking at the top of a building: elevation. You're at the top looking down at your ka-crush: depression. Literally.</div>
+        <p><b>Example:</b> Tingin mo sa itaas, may tower na 30 meters ang taas, 40 meters ang layo sa'yo. What's the angle of elevation?</p>
+        <ol class="steps">
+          <li>Opposite (height) = 30, Adjacent (ground distance) = 40</li>
+          <li>Use TOA: tan(θ) = 30/40 = 0.75</li>
+          <li>θ = arctan(0.75) ≈ <b>36.87°</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Elevation Solver</h5>
+          <div class="row">
+            height = <input type="number" id="el-h" value="30"/> m
+            distance = <input type="number" id="el-d" value="40"/> m
+            <button onclick="solveElevation()">Find θ</button>
+          </div>
+          <div class="output" id="el-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-elev-dep">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-trig-reciprocal">
+      <summary>4.3 — csc, sec, cot (Reciprocal Trig Ratios)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Flip sin, cos, tan upside-down. That's it. They're the <b>reciprocal</b> ratios.</h4>
+        </div>
+        <div class="formula">csc(θ) = 1 / sin(θ) = Hypotenuse / Opposite
+sec(θ) = 1 / cos(θ) = Hypotenuse / Adjacent
+cot(θ) = 1 / tan(θ) = Adjacent / Opposite</div>
+        <div class="analogy"><b>🔥 Mnemonic:</b> co-sec pairs with sin (both start with s/sc). sec pairs with cos. cot pairs with tan. Mix 'em up once and you're toast. Drill this.</div>
+        <p><b>Example:</b> sin(30°) = 1/2 → csc(30°) = 2</p>
+        <div class="interactive">
+          <h5>💡 Interactive: All 6 Trig Ratios</h5>
+          <div class="row">
+            θ (deg) = <input type="number" id="tr6-ang" value="30"/>
+            <button onclick="calcAllTrig()">Compute All 6</button>
+          </div>
+          <div class="output" id="tr6-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="math-trig-reciprocal">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="math-trig-word">
+      <summary>4.4 — Trigonometry Word Problems (Real-Life)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Trig is used for EVERYTHING: surveying, navigation, architecture, even video game physics.</h4>
+        </div>
+        <p><b>Problem 1 (Ladder):</b> May ladder na 10m ang haba, nakasandal sa dingding. Angle na ginagawa sa ground = 65°. Gaano kataas ang naabot nito?</p>
+        <ol class="steps">
+          <li>Sketch: hypotenuse = 10 (ladder), angle = 65°, opposite = height (what we want)</li>
+          <li>Use SOH: sin(65°) = opp/10</li>
+          <li>sin(65°) ≈ 0.906</li>
+          <li>opp = 10 · 0.906 ≈ <b>9.06 m</b></li>
+        </ol>
+        <p><b>Problem 2 (Airplane):</b> From a 500m high airplane, angle of depression sa airport = 20°. How far horizontally is the airport?</p>
+        <ol class="steps">
+          <li>Angle of depression = angle of elevation from airport</li>
+          <li>opp = 500 (height), adj = horizontal distance = ?</li>
+          <li>tan(20°) = 500/adj → adj = 500/tan(20°)</li>
+          <li>tan(20°) ≈ 0.364</li>
+          <li>adj = 500/0.364 ≈ <b>1373 m</b></li>
+        </ol>
+        <p><b>Problem 3 (Shadow):</b> A 6-meter tree's shadow is 8m long. What's the sun's angle of elevation?</p>
+        <ol class="steps">
+          <li>tan(θ) = opp/adj = 6/8 = 0.75</li>
+          <li>θ = arctan(0.75) ≈ <b>36.87°</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="math-trig-word">✅ Done</button>
+      </div>
+    </details>
+  </details>
+</section>
+
+<!-- ============ SCIENCE ============ -->
+<section class="panel" id="panel-science">
+  <div class="hero">
+    <h2>🔬 Science 9 — Biology, Chemistry, Earth, Physics</h2>
+    <p>Science = curiosity organized. Real-world tested. Every topic here answers a "why does this matter to me?" question.</p>
+    <div class="progressbar"><span id="prog-science"></span></div>
+  </div>
+
+  <details class="branch" data-sec="sci-q1">
+    <summary>Quarter 1: Biology — Respiratory, Circulatory, Heredity <span class="badge">Q1</span></summary>
+
+    <details class="leaf" data-topic="sci-respi">
+      <summary>1.1 — Respiratory System: Air Pipeline ng Katawan</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Respiratory = how oxygen gets into your blood + CO₂ gets out.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Your body is like a house. Oxygen = gas for the stove (making energy). CO₂ = smoke na kailangan ilabas. Lungs = chimneys + air intake combined.</div>
+        <p><b>Path of air (memorize this route):</b></p>
+        <div class="formula">Nose/Mouth → Pharynx → Larynx → Trachea → Bronchi → Bronchioles → Alveoli → Bloodstream</div>
+        <p><b>Gas exchange</b> happens sa <b>alveoli</b> — tiny air sacs. O₂ diffuses into blood (via capillaries), CO₂ diffuses out.</p>
+        <ul>
+          <li><b>Inhale:</b> diaphragm contracts + goes DOWN → chest expands → air rushes in.</li>
+          <li><b>Exhale:</b> diaphragm relaxes + goes UP → chest shrinks → air pushed out.</li>
+        </ul>
+        <p><b>Common diseases:</b> asthma, pneumonia, TB, COPD, lung cancer (smoking).</p>
+        <div class="meme">Vape = fake-healthy smoking. Still destroys alveoli. Imagine gross chem reactions in your lungs. Na-read mo to? Good. Isipin next hit. 🚬❌</div>
+        <button class="mark-done secondary" data-mark="sci-respi">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-circ">
+      <summary>1.2 — Circulatory System: Blood as a Delivery App</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Circulation = blood carrying O₂, nutrients, hormones, waste, around the body. Heart = the pump. Vessels = the roads.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Blood = GrabFood delivery riders. Heart = the main kitchen. Arteries = highways going OUT. Veins = highways coming BACK. Capillaries = small alleys where the actual handoff happens.</div>
+        <p><b>Heart has 4 chambers:</b></p>
+        <table class="tbl">
+          <tr><th>Chamber</th><th>Job</th></tr>
+          <tr><td><b>Right Atrium</b></td><td>Receives deoxygenated blood from body (via vena cava)</td></tr>
+          <tr><td><b>Right Ventricle</b></td><td>Pumps blood to LUNGS (via pulmonary artery)</td></tr>
+          <tr><td><b>Left Atrium</b></td><td>Receives oxygenated blood from LUNGS (via pulmonary veins)</td></tr>
+          <tr><td><b>Left Ventricle</b></td><td>Pumps oxygenated blood to BODY (via aorta) — strongest</td></tr>
+        </table>
+        <p><b>2 loops of circulation:</b></p>
+        <ul>
+          <li><b>Pulmonary:</b> heart ↔ lungs (get O₂)</li>
+          <li><b>Systemic:</b> heart ↔ body (deliver O₂)</li>
+        </ul>
+        <p><b>Blood pressure:</b> 120/80 = systolic/diastolic (pumping/resting). Above 140/90 = hypertension.</p>
+        <button class="mark-done secondary" data-mark="sci-circ">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-genes">
+      <summary>1.3 — Heredity & Mendelian Genetics (Punnett squares)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>You look like your parents because they gave you <b>genes</b>. Combination = lottery.</h4>
+        </div>
+        <p><b>Key terms:</b></p>
+        <ul>
+          <li><b>Gene</b> = instruction for a trait (eye color, height)</li>
+          <li><b>Allele</b> = version of a gene (brown eyes allele B, blue eyes allele b)</li>
+          <li><b>Dominant (B)</b> = expressed if present. Big letter.</li>
+          <li><b>Recessive (b)</b> = only expressed if both alleles are this. Small letter.</li>
+          <li><b>Genotype</b> = genetic makeup (BB, Bb, bb)</li>
+          <li><b>Phenotype</b> = physical trait (brown or blue eyes)</li>
+          <li><b>Homozygous</b> = same alleles (BB or bb). <b>Heterozygous</b> = different (Bb).</li>
+        </ul>
+        <p><b>Punnett Square: Bb × Bb</b></p>
+        <table class="tbl" style="max-width:300px;text-align:center">
+          <tr><th></th><th>B</th><th>b</th></tr>
+          <tr><th>B</th><td>BB</td><td>Bb</td></tr>
+          <tr><th>b</th><td>Bb</td><td>bb</td></tr>
+        </table>
+        <p>Results: 1 BB : 2 Bb : 1 bb → Phenotype: 3 dominant : 1 recessive (75:25)</p>
+        <div class="interactive">
+          <h5>💡 Interactive: Punnett Square Generator</h5>
+          <div class="row">
+            Parent 1: <select id="p1"><option>BB</option><option selected>Bb</option><option>bb</option></select>
+            Parent 2: <select id="p2"><option>BB</option><option selected>Bb</option><option>bb</option></select>
+            <button onclick="makePunnett()">Generate</button>
+          </div>
+          <div class="output" id="pun-out"></div>
+        </div>
+        <p><b>Non-Mendelian patterns:</b></p>
+        <ul>
+          <li><b>Incomplete dominance:</b> RR (red) × rr (white) = Rr (pink). Mixed, not one dominating.</li>
+          <li><b>Codominance:</b> Both alleles show. Example: blood type AB.</li>
+          <li><b>Sex-linked:</b> Gene on X chromosome. Color blindness, hemophilia. Mas common sa boys kasi 1 X lang nila.</li>
+        </ul>
+        <button class="mark-done secondary" data-mark="sci-genes">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-digest">
+      <summary>1.4 — Digestive System: Food → Energy Factory</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Digestive system = takes food, breaks it down, absorbs nutrients, throws away waste.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Parang Shopee delivery to warehouse to your house. Mouth = receiving. Stomach = sorting/processing. Small intestine = warehouse distribution. Large intestine = trash sorting. Toilet = waste disposal.</div>
+        <p><b>Path of food:</b></p>
+        <div class="formula">Bibig → Lalamunan (esophagus) → Tiyan (stomach) → Small intestine → Large intestine → Rectum → Anus</div>
+        <table class="tbl">
+          <tr><th>Organ</th><th>Ginagawa</th></tr>
+          <tr><td>Bibig (Mouth)</td><td>Ngata-ngata + amylase (enzyme sa laway) → starts breaking down starch</td></tr>
+          <tr><td>Stomach</td><td>HCl acid + pepsin → breaks down protein</td></tr>
+          <tr><td>Small Intestine</td><td>Main absorption site. Villi maximize surface area.</td></tr>
+          <tr><td>Liver</td><td>Produces bile → breaks down fats</td></tr>
+          <tr><td>Pancreas</td><td>Produces enzymes + insulin</td></tr>
+          <tr><td>Large Intestine</td><td>Absorbs water; forms waste</td></tr>
+        </table>
+        <p><b>Diseases:</b> GERD/acid reflux, ulcer, constipation, diarrhea, appendicitis.</p>
+        <button class="mark-done secondary" data-mark="sci-digest">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-ecosystem">
+      <summary>1.5 — Biodiversity & Ecosystems</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Biodiversity = variety of life. Ecosystem = community of organisms + environment, interacting.</h4>
+        </div>
+        <p><b>Levels of organization:</b></p>
+        <ol class="steps">
+          <li><b>Individual</b> — 1 organism</li>
+          <li><b>Population</b> — same species, same area</li>
+          <li><b>Community</b> — different species, interacting</li>
+          <li><b>Ecosystem</b> — community + non-living stuff (air, water, soil)</li>
+          <li><b>Biome</b> — large-scale ecosystem (tropical rainforest, desert)</li>
+          <li><b>Biosphere</b> — all life on Earth</li>
+        </ol>
+        <p><b>Roles in ecosystem:</b></p>
+        <ul>
+          <li><b>Producers</b> — plants, gumagawa ng sariling food (photosynthesis)</li>
+          <li><b>Consumers</b> — kumakain ng iba (herbivores, carnivores, omnivores)</li>
+          <li><b>Decomposers</b> — fungi, bacteria. Nagbabalik ng nutrients sa soil.</li>
+        </ul>
+        <p><b>Food chain vs food web:</b> Chain = linear (grass → cow → tao). Web = multiple chains interconnected. Real-world = web.</p>
+        <p><b>Symbiosis types:</b></p>
+        <ul>
+          <li><b>Mutualism</b> — both benefit (bee + flower)</li>
+          <li><b>Commensalism</b> — 1 benefits, other unaffected (barnacle on whale)</li>
+          <li><b>Parasitism</b> — 1 benefits, other harmed (tick on dog)</li>
+        </ul>
+        <div class="meme">Philippines = biodiversity hotspot. Pero ranked 5th sa most endangered biodiversity. Literal extinction warning. 🐒🐦</div>
+        <button class="mark-done secondary" data-mark="sci-ecosystem">✅ Done</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="sci-q2">
+    <summary>Quarter 2: Chemistry — Atoms, Periodic, Bonding <span class="badge">Q2</span></summary>
+
+    <details class="leaf" data-topic="sci-atom">
+      <summary>2.1 — Atomic Structure & Electron Configuration</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Atom = smallest unit of matter. Has 3 parts: protons (+), neutrons (no charge), electrons (-).</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Atom = mini solar system. Nucleus (protons+neutrons) = sun sa gitna. Electrons = planets orbiting.</div>
+        <table class="tbl">
+          <tr><th>Particle</th><th>Charge</th><th>Location</th><th>Mass</th></tr>
+          <tr><td>Proton (p⁺)</td><td>+1</td><td>Nucleus</td><td>1 amu</td></tr>
+          <tr><td>Neutron (n⁰)</td><td>0</td><td>Nucleus</td><td>1 amu</td></tr>
+          <tr><td>Electron (e⁻)</td><td>-1</td><td>Orbitals</td><td>~0 amu</td></tr>
+        </table>
+        <p><b>Electron shells (Bohr model):</b></p>
+        <div class="formula">K shell: max 2 electrons
+L shell: max 8
+M shell: max 18  (but often holds 8 for Grade 9 level)
+N shell: max 32</div>
+        <p><b>Example:</b> Sodium (Na), atomic number 11.</p>
+        <ol class="steps">
+          <li>11 electrons total.</li>
+          <li>Fill K shell: 2 electrons. Remaining: 9.</li>
+          <li>Fill L shell: 8 electrons. Remaining: 1.</li>
+          <li>M shell: 1 electron.</li>
+          <li><b>Configuration: 2, 8, 1</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Electron Config (Z = atomic number 1-36)</h5>
+          <div class="row">
+            Atomic Number: <input type="number" id="at-z" value="11" min="1" max="36"/>
+            <button onclick="eConfig()">Show Shells</button>
+          </div>
+          <div class="output" id="at-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="sci-atom">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-periodic">
+      <summary>2.2 — The Periodic Table: Groups & Periods</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Periodic table = arranged BY atomic number + by electron behavior.</h4>
+        </div>
+        <ul>
+          <li><b>Rows = Periods</b> (1-7). Number of electron shells.</li>
+          <li><b>Columns = Groups</b> (1-18). Same number of valence (outer) electrons = similar chemistry.</li>
+        </ul>
+        <table class="tbl">
+          <tr><th>Group</th><th>Name</th><th>Trait</th></tr>
+          <tr><td>1</td><td>Alkali metals</td><td>1 valence e⁻. Super reactive. (Na, K)</td></tr>
+          <tr><td>2</td><td>Alkaline earth</td><td>2 valence e⁻. Reactive. (Mg, Ca)</td></tr>
+          <tr><td>17</td><td>Halogens</td><td>7 valence e⁻. Wants 1 more. Reactive nonmetals. (F, Cl, Br)</td></tr>
+          <tr><td>18</td><td>Noble gases</td><td>8 valence e⁻ (full). Inert, don't react. (He, Ne, Ar)</td></tr>
+        </table>
+        <div class="analogy"><b>🔥 Analogy:</b> Noble gases = the chill kids. They have everything they need (full outer shell) — they don't join drama (chemical reactions).</div>
+        <button class="mark-done secondary" data-mark="sci-periodic">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-bonding">
+      <summary>2.3 — Chemical Bonding: Ionic vs Covalent</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Atoms bond to get to 8 valence electrons (<b>octet rule</b>) — like everyone wants to be a noble gas.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Type</th><th>How</th><th>Between</th><th>Example</th></tr>
+          <tr><td><b>Ionic</b></td><td>Transfer of e⁻ (one gives, one takes)</td><td>Metal + Nonmetal</td><td>NaCl (table salt)</td></tr>
+          <tr><td><b>Covalent</b></td><td>Sharing of e⁻</td><td>Nonmetal + Nonmetal</td><td>H₂O, CO₂</td></tr>
+          <tr><td><b>Metallic</b></td><td>"Sea of e⁻" shared across</td><td>Metal + Metal</td><td>Cu wire, Fe</td></tr>
+        </table>
+        <div class="analogy"><b>🔥 Analogy:</b> Ionic = "give me your lunch." One takes, one gives. Covalent = "let's share this one." Best friends sharing food.</div>
+        <p><b>Example of ionic bond (NaCl):</b></p>
+        <ol class="steps">
+          <li>Na has 1 valence e⁻, wants to lose it. → becomes Na⁺</li>
+          <li>Cl has 7 valence e⁻, wants 1 more. → takes Na's, becomes Cl⁻</li>
+          <li>Opposite charges attract: Na⁺ + Cl⁻ = <b>NaCl</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="sci-bonding">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-reactions">
+      <summary>2.4 — Chemical Reactions & Balancing Equations</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Chemical reaction = atoms rearrange. <b>Law of Conservation of Mass:</b> atoms don't disappear. Same count left + right.</h4>
+        </div>
+        <p><b>5 main types of reactions:</b></p>
+        <table class="tbl">
+          <tr><th>Type</th><th>Pattern</th><th>Example</th></tr>
+          <tr><td>Synthesis (Combination)</td><td>A + B → AB</td><td>2H₂ + O₂ → 2H₂O</td></tr>
+          <tr><td>Decomposition</td><td>AB → A + B</td><td>2H₂O → 2H₂ + O₂</td></tr>
+          <tr><td>Single Replacement</td><td>A + BC → AC + B</td><td>Zn + 2HCl → ZnCl₂ + H₂</td></tr>
+          <tr><td>Double Replacement</td><td>AB + CD → AD + CB</td><td>AgNO₃ + NaCl → AgCl + NaNO₃</td></tr>
+          <tr><td>Combustion</td><td>Fuel + O₂ → CO₂ + H₂O</td><td>CH₄ + 2O₂ → CO₂ + 2H₂O</td></tr>
+        </table>
+        <p><b>Balancing equations (step-by-step):</b></p>
+        <ol class="steps">
+          <li>List atoms on both sides. Count each element.</li>
+          <li>Balance one element at a time. Start with the most complex.</li>
+          <li>Adjust coefficients (numbers in front). NEVER change subscripts.</li>
+          <li>Save H and O for last. Double-check.</li>
+        </ol>
+        <p><b>Example:</b> Balance Fe + O₂ → Fe₂O₃</p>
+        <ol class="steps">
+          <li>Left: 1 Fe, 2 O. Right: 2 Fe, 3 O.</li>
+          <li>Balance Fe: put 2 in front of Fe → 2Fe + O₂ → Fe₂O₃</li>
+          <li>Balance O: LCM of 2 and 3 = 6. Use 3O₂ (6 O's) and 2Fe₂O₃ (6 O's).</li>
+          <li>Now Fe: need 4 on left: 4Fe + 3O₂ → 2Fe₂O₃</li>
+          <li>✅ Balanced: <b>4Fe + 3O₂ → 2Fe₂O₃</b></li>
+        </ol>
+        <button class="mark-done secondary" data-mark="sci-reactions">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-mole">
+      <summary>2.5 — Mole Concept & Molar Mass (Intro)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Mole = "chemist's dozen" — it's 6.022 × 10²³ particles. Because atoms are too tiny to count one at a time.</h4>
+        </div>
+        <div class="formula">1 mole = 6.022 × 10²³ particles (Avogadro's number)
+Molar mass = atomic mass in grams (from periodic table)</div>
+        <p><b>Example:</b> How many grams in 2 moles of water (H₂O)?</p>
+        <ol class="steps">
+          <li>H = 1 g/mol, O = 16 g/mol</li>
+          <li>H₂O = 2(1) + 16 = 18 g/mol</li>
+          <li>2 moles × 18 g/mol = <b>36 grams</b></li>
+        </ol>
+        <div class="analogy"><b>🔥 Analogy:</b> "Dozen" = 12 donuts. "Mole" = 6.022 × 10²³ atoms. Same idea, bigger number.</div>
+        <button class="mark-done secondary" data-mark="sci-mole">✅ Done</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="sci-q3">
+    <summary>Quarter 3: Earth & Space — Volcanoes, Climate, Stars <span class="badge">Q3</span></summary>
+
+    <details class="leaf" data-topic="sci-volcano">
+      <summary>3.1 — Volcanoes: Types & Eruptions</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Volcano = opening sa crust kung saan lumalabas ang magma, ashes, at gas.</h4>
+        </div>
+        <p><b>3 main types of volcanoes:</b></p>
+        <table class="tbl">
+          <tr><th>Type</th><th>Shape</th><th>Eruption</th><th>Example (PH)</th></tr>
+          <tr><td><b>Shield</b></td><td>Wide, low-slope</td><td>Gentle, runny lava</td><td>Mauna Loa (Hawaii)</td></tr>
+          <tr><td><b>Cinder cone</b></td><td>Small, steep</td><td>Explosive, short-lived</td><td>Mt. Parícutin</td></tr>
+          <tr><td><b>Stratovolcano</b></td><td>Tall, conical</td><td>Violent, alternating lava/ash</td><td>Mayon, Taal, Pinatubo</td></tr>
+        </table>
+        <p><b>Active, Dormant, Extinct:</b></p>
+        <ul>
+          <li><b>Active:</b> erupted recently, pwedeng mag-erupt ulit. (Taal, Mayon, Pinatubo)</li>
+          <li><b>Dormant:</b> tulog, pero may potential. (Mt. Kanlaon, minsan)</li>
+          <li><b>Extinct:</b> hindi na magta-erupt. (Mt. Arayat — debatable pa daw)</li>
+        </ul>
+        <div class="meme">Philippines is on the Pacific Ring of Fire — we legit live on top of tectonic chaos. Lindol + bulkan combo. 🌋</div>
+        <button class="mark-done secondary" data-mark="sci-volcano">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-climate">
+      <summary>3.2 — Climate, Typhoons, at Factors</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Climate = long-term weather pattern (decades). Weather = today.</h4>
+        </div>
+        <p><b>Factors affecting climate:</b></p>
+        <ul>
+          <li><b>Latitude</b> — closer to equator = mas mainit</li>
+          <li><b>Altitude</b> — mas taas = mas malamig</li>
+          <li><b>Bodies of water</b> — moderates temperature (coast = less extreme)</li>
+          <li><b>Wind patterns</b> — amihan (NE monsoon, cool) vs habagat (SW monsoon, wet)</li>
+          <li><b>Ocean currents</b> — warm/cold currents affect regions</li>
+        </ul>
+        <p><b>Typhoon formation:</b></p>
+        <ol class="steps">
+          <li>Warm ocean water (≥26.5°C) evaporates → rises.</li>
+          <li>As it rises, it cools → condenses → thunderstorms form.</li>
+          <li>Coriolis effect (Earth's rotation) spins the system.</li>
+          <li>If winds exceed 119 km/h → officially a typhoon.</li>
+        </ol>
+        <button class="mark-done secondary" data-mark="sci-climate">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-stars">
+      <summary>3.3 — Constellations & Astronomy Basics</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Constellations = patterns of stars we see from Earth. Hindi sila talaga magkalapit — Earth's perspective lang 'yan.</h4>
+        </div>
+        <p><b>3 most common constellations:</b></p>
+        <ul>
+          <li><b>Orion (The Hunter)</b> — recognizable by the 3-star "belt"</li>
+          <li><b>Ursa Major (Big Dipper)</b> — ladle shape, points to North Star (Polaris)</li>
+          <li><b>Scorpius</b> — curves like a scorpion, visible sa PH tuwing summer</li>
+        </ul>
+        <p><b>Star terms:</b></p>
+        <ul>
+          <li><b>Luminosity:</b> actual brightness</li>
+          <li><b>Magnitude:</b> apparent brightness from Earth (lower = brighter, weird ba?)</li>
+          <li><b>Light-year:</b> distance na binyahe ng liwanag sa 1 year ≈ 9.46 trillion km</li>
+        </ul>
+        <div class="meme">Sunlight you see NOW left the Sun 8 minutes ago. You're literally looking at the past. Mindblowing, right? 🌞</div>
+        <button class="mark-done secondary" data-mark="sci-stars">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-earthquake">
+      <summary>3.4 — Earthquakes, Faults, & Plate Tectonics</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Earthquake = sudden shaking when stored energy in rocks releases. Cause: <b>fault movement</b>.</h4>
+        </div>
+        <p><b>3 types of faults:</b></p>
+        <table class="tbl">
+          <tr><th>Fault Type</th><th>Movement</th><th>Caused by</th></tr>
+          <tr><td><b>Normal</b></td><td>Blocks pull apart, one drops</td><td>Tensional force (stretching)</td></tr>
+          <tr><td><b>Reverse (Thrust)</b></td><td>Blocks push together, one rides up</td><td>Compressional force</td></tr>
+          <tr><td><b>Strike-slip</b></td><td>Blocks slide horizontally past each other</td><td>Shear force (West Valley Fault sa PH!)</td></tr>
+        </table>
+        <p><b>Key terms:</b></p>
+        <ul>
+          <li><b>Focus</b> — where earthquake starts (underground)</li>
+          <li><b>Epicenter</b> — point on surface directly above focus</li>
+          <li><b>Seismic waves</b>:
+            <ul>
+              <li><b>P-waves</b> (primary) — fastest, compressional, travel through solids + liquids</li>
+              <li><b>S-waves</b> (secondary) — slower, only through solids</li>
+              <li><b>Surface waves</b> — slowest, most destructive</li>
+            </ul>
+          </li>
+          <li><b>Magnitude</b> (Richter scale) — how much energy released. 7+ = major.</li>
+          <li><b>Intensity</b> (PEIS scale in PH) — how shaking is FELT locally. I to X.</li>
+        </ul>
+        <p><b>Plate Tectonics:</b> Earth's crust = broken into plates floating on mantle. They move → earthquakes, volcanoes, mountain-building.</p>
+        <ul>
+          <li><b>Convergent boundary</b> — plates collide. Makes mountains or subduction zones.</li>
+          <li><b>Divergent boundary</b> — plates pull apart. Makes mid-ocean ridges.</li>
+          <li><b>Transform boundary</b> — plates slide. Like San Andreas Fault.</li>
+        </ul>
+        <div class="meme">PH is on top of Philippine Sea Plate + Eurasian Plate collision. Earthquake country fr fr. Do yourselves a favor — learn "Duck, Cover, Hold." 🌏</div>
+        <button class="mark-done secondary" data-mark="sci-earthquake">✅ Done</button>
+      </div>
+    </details>
+  </details>
+
+  <details class="branch" data-sec="sci-q4">
+    <summary>Quarter 4: Physics — Motion, Force, Energy <span class="badge">Q4</span></summary>
+
+    <details class="leaf" data-topic="sci-projectile">
+      <summary>4.1 — Projectile Motion</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Projectile = any object thrown + only gravity acts on it. 2D motion: horizontal + vertical.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Analogy:</b> Gun shot vs dropped bullet = they hit ground at the <em>same time</em>. The horizontal speed doesn't change the vertical drop. Crazy, right? Gravity doesn't care.</div>
+        <p><b>Key fact:</b> Horizontal velocity is <b>constant</b>. Vertical is affected by gravity (9.8 m/s² down).</p>
+        <p><b>Equations:</b></p>
+        <div class="formula">Horizontal: x = v₀ₓ · t
+Vertical:   y = v₀ᵧ · t - ½ · g · t²
+where g = 9.8 m/s²</div>
+        <p><b>Example:</b> Ball kicked horizontally at 10 m/s from a 20m high cliff. How far did it travel?</p>
+        <ol class="steps">
+          <li>Find time to fall: y = -½gt² → -20 = -½(9.8)t² → t² = 40/9.8 ≈ 4.08 → <b>t ≈ 2.02 s</b></li>
+          <li>Horizontal distance: x = 10 · 2.02 = <b>20.2 m</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Projectile Calculator (horizontal launch)</h5>
+          <div class="row">
+            Launch speed v₀ = <input type="number" id="pr-v" value="10"/> m/s
+            Height h = <input type="number" id="pr-h" value="20"/> m
+            <button onclick="calcProjectile()">Calculate</button>
+          </div>
+          <div class="output" id="pr-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="sci-projectile">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-momentum">
+      <summary>4.2 — Momentum & Impulse</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Momentum = "how hard is it to stop something?" = mass × velocity.</h4>
+        </div>
+        <div class="formula">p = m · v              (momentum = mass × velocity)
+Impulse = F · Δt = Δp  (impulse changes momentum)</div>
+        <div class="analogy"><b>🔥 Analogy:</b> A truck at 10 km/h is HARDER to stop than a bicycle at 10 km/h. Same speed, different momentum. Mass matters a lot.</div>
+        <p><b>Example:</b> A 1500 kg car moving at 20 m/s. Momentum?</p>
+        <ol class="steps">
+          <li>p = m · v = 1500 · 20 = <b>30,000 kg·m/s</b></li>
+        </ol>
+        <p><b>Conservation of momentum:</b> In a closed system, total momentum before = total momentum after. Collisions preserve it.</p>
+        <div class="interactive">
+          <h5>💡 Interactive: Momentum Solver</h5>
+          <div class="row">
+            mass = <input type="number" id="mom-m" value="1500"/> kg
+            velocity = <input type="number" id="mom-v" value="20"/> m/s
+            <button onclick="calcMom()">Compute</button>
+          </div>
+          <div class="output" id="mom-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="sci-momentum">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-energy">
+      <summary>4.3 — Conservation of Energy (KE, PE)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Energy cannot be created or destroyed. Only transferred o converted.</h4>
+        </div>
+        <div class="formula">KE (kinetic) = ½ · m · v²
+PE (potential, gravity) = m · g · h
+Total Mechanical Energy = KE + PE (constant if no friction)</div>
+        <div class="analogy"><b>🔥 Analogy:</b> Rollercoaster. Sa taas: lahat PE, walang KE (stopped at peak). Babagsak: PE → KE. Sa baba: max KE, zero PE. Sum stays the same.</div>
+        <p><b>Example:</b> 2 kg ball dropped from 10 m. What's KE just before hitting ground?</p>
+        <ol class="steps">
+          <li>Initial PE = mgh = 2 · 9.8 · 10 = <b>196 J</b></li>
+          <li>Initial KE = 0 (at rest)</li>
+          <li>At bottom: all PE became KE → <b>KE = 196 J</b></li>
+          <li>Find velocity: ½mv² = 196 → v² = 196 → <b>v ≈ 14 m/s</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Energy Calculator</h5>
+          <div class="row">
+            mass = <input type="number" id="en-m" value="2"/> kg
+            height = <input type="number" id="en-h" value="10"/> m
+            <button onclick="calcEnergy()">Solve</button>
+          </div>
+          <div class="output" id="en-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="sci-energy">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-newton">
+      <summary>4.4 — Newton's 3 Laws of Motion (Reinforcement)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>3 simple rules that explain literally all motion in Grade 9 physics.</h4>
+        </div>
+        <table class="tbl">
+          <tr><th>Law</th><th>Plain talk</th><th>Real example</th></tr>
+          <tr><td><b>1st — Inertia</b></td><td>Object at rest stays at rest. Moving stays moving. Unless acted on.</td><td>Seatbelt! Car stops, your body keeps going (inertia).</td></tr>
+          <tr><td><b>2nd — F = ma</b></td><td>Force = mass × acceleration. More force = more accel.</td><td>Push an empty cart vs full cart — full is harder.</td></tr>
+          <tr><td><b>3rd — Action/Reaction</b></td><td>Every action has equal + opposite reaction.</td><td>You push floor, floor pushes you back. Tayo nakakalakad.</td></tr>
+        </table>
+        <div class="formula">F = m · a        (Newton's Second Law)
+1 Newton (N) = 1 kg · m/s²</div>
+        <p><b>Example:</b> A 5 kg object is pushed with a force of 20 N. What's the acceleration?</p>
+        <ol class="steps">
+          <li>F = ma → a = F/m</li>
+          <li>a = 20/5 = <b>4 m/s²</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: F = ma Solver</h5>
+          <div class="row">
+            mass = <input type="number" id="nw-m" value="5"/> kg
+            force = <input type="number" id="nw-f" value="20"/> N
+            <button onclick="calcNewton()">Find Acceleration</button>
+          </div>
+          <div class="output" id="nw-out"></div>
+        </div>
+        <button class="mark-done secondary" data-mark="sci-newton">✅ Done</button>
+      </div>
+    </details>
+
+    <details class="leaf" data-topic="sci-electricity">
+      <summary>4.5 — Electricity Basics (Ohm's Law, Circuits)</summary>
+      <div class="content">
+        <div class="feynman">
+          <div class="label">🧠 Feynman Mode</div>
+          <h4>Electricity = flow of electrons through a wire. Same concept as water flowing through pipes.</h4>
+        </div>
+        <div class="analogy"><b>🔥 Water-pipe analogy:</b>
+          <ul>
+            <li><b>Voltage (V)</b> = water pressure (volts)</li>
+            <li><b>Current (I)</b> = flow rate of water (amperes)</li>
+            <li><b>Resistance (R)</b> = narrowness of pipe (ohms)</li>
+          </ul>
+        </div>
+        <div class="formula">Ohm's Law: V = I · R
+Power: P = V · I  (watts)</div>
+        <p><b>Types of circuits:</b></p>
+        <ul>
+          <li><b>Series</b> — one path. Remove 1 bulb, lahat namatay. Total resistance = R₁ + R₂ + R₃.</li>
+          <li><b>Parallel</b> — multiple paths. Remove 1 bulb, others work. Total R smaller than smallest individual.</li>
+        </ul>
+        <p><b>Example:</b> A device uses 6V battery, has 2 ohm resistance. What's the current?</p>
+        <ol class="steps">
+          <li>V = IR → I = V/R</li>
+          <li>I = 6/2 = <b>3 amperes</b></li>
+        </ol>
+        <div class="interactive">
+          <h5>💡 Interactive: Ohm's Law Solver</h5>
+          <div class="row">
+            V = <input type="number" id="oh-v" value="6"/>
+            R = <input type="number" id="oh-r" value="2"/>
+            <button onclick="calcOhm()">Find I & P</button>
+          </div>
+          <div class="output" id="oh-out"></div>
+        </div>
+        <div class="meme">Static shock? That's electrons jumping. Your body literally does physics daily. 🔌⚡</div>
+        <button class="mark-done secondary" data-mark="sci-electricity">✅ Done</button>
+      </div>
+    </details>
+  </details>
+</section>
+
+<div class="footer">
+  <p>Made for Sto. Tomas Academy incoming Grade 9s. No textbook vibes. Pure survival mode.</p>
+  <p>Data sources: DepEd K-12 Curriculum Guides (Filipino, Math, Science G9) · MATATAG curriculum references · OpenStax &amp; Khan Academy conventions. Pinagsama + Feynman'd.</p>
+  <p>Tap 💾 Reset Progress if you want to start fresh: <button class="secondary" onclick="resetProgress()">Reset Progress</button></p>
+</div>
+</main>
+
+<script>
+/* =============== TAB SWITCHING =============== */
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  panels.forEach(p=>p.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+}));
+
+/* =============== PROGRESS SAVING =============== */
+const STORAGE_KEY = 'sta_grade9_progress_v1';
+function getProgress(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return {}}}
+function saveProgress(p){ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
+
+function markDone(topicId){
+  const p = getProgress();
+  p[topicId] = true;
+  saveProgress(p);
+  renderProgress();
+}
+function resetProgress(){
+  if(confirm('Sure? All checkmarks will be erased.')){
+    localStorage.removeItem(STORAGE_KEY);
+    renderProgress();
+  }
+}
+
+function renderProgress(){
+  const p = getProgress();
+  document.querySelectorAll('details.leaf').forEach(el=>{
+    const topicId = el.dataset.topic;
+    const summary = el.querySelector('summary');
+    let badge = summary.querySelector('.badge');
+    if(!badge){ badge = document.createElement('span'); badge.className='badge'; summary.appendChild(badge); }
+    if(p[topicId]){ badge.textContent='✓ done'; badge.classList.add('done'); }
+    else { badge.textContent='tap'; badge.classList.remove('done'); }
+  });
+  // section progress bars
+  ['filipino','math','science'].forEach(subj=>{
+    const panel = document.getElementById('panel-'+subj);
+    const leaves = panel.querySelectorAll('details.leaf');
+    const total = leaves.length;
+    let done = 0;
+    leaves.forEach(l=>{ if(p[l.dataset.topic]) done++; });
+    const pct = total ? (done/total)*100 : 0;
+    const bar = document.getElementById('prog-'+subj);
+    if(bar) bar.style.width = pct + '%';
+  });
+}
+
+document.addEventListener('click',(e)=>{
+  if(e.target.matches('[data-mark]')){
+    markDone(e.target.dataset.mark);
+    e.target.textContent = '✅ Saved!';
+    setTimeout(()=>{e.target.textContent='✅ Tapos ko na ito'},1500);
+  }
+});
+
+/* Quizzes */
+document.querySelectorAll('.quiz .opts button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const correct = b.dataset.correct === '1';
+    b.classList.add(correct?'correct':'wrong');
+    if(!correct){
+      const siblings = b.parentElement.querySelectorAll('button');
+      siblings.forEach(s=>{ if(s.dataset.correct==='1') s.classList.add('correct'); });
+    }
+  });
+});
+
+renderProgress();
+
+/* ============================================================
+   FILIPINO INTERACTIVES
+   ============================================================ */
+function checkChar(){
+  const input = document.getElementById('char-q').value.trim().toLowerCase();
+  const out = document.getElementById('char-out');
+  if(input.includes('sisa')){ out.textContent = '✅ Tama! Si Sisa, ang ina ni Basilio at Crispin, ang simbolo ng Inang Bayan na inagawan ng pag-asa.'; }
+  else if(input){ out.textContent = '❌ Wrong. Tip: Isipin ang ina na naghanap sa kanyang mga anak hanggang masiraan ng bait. Hint: S___a'; }
+  else { out.textContent = 'Mag-type ka ng sagot bago mag-check.'; }
+}
+
+function genHook(){
+  const topic = document.getElementById('speech-topic').value;
+  const style = document.getElementById('speech-style').value;
+  const out = document.getElementById('speech-out');
+  const hooks = {
+    'Climate Change':{
+      'Shock Statistic':'"Alam n\'yo bang by 2050, 20 milyong Pilipino ang mawawalan ng tahanan dahil sa pagtaas ng dagat?"',
+      'Rhetorical Question':'"Paano natin maipagmamalaki sa ating mga apo ang isang bansang naging wasak dahil sa ating kawalang-pakialam?"',
+      'Personal Story':'"Noong bata pa ako, may mga lugar sa Maynila na mabaha kapag umulan — pero ngayon, baha na kahit walang ulan."'
+    },
+    'Mental Health':{
+      'Shock Statistic':'"1 sa 3 kabataang Pilipino ay dumaranas ng anxiety — pero 8 sa 10 ay hindi humihingi ng tulong."',
+      'Rhetorical Question':'"Kailan ba naging weakness ang pag-amin na hindi ka okay?"',
+      'Personal Story':'"Isang gabi, hindi ako makatulog — pero hindi dahil sa phone. Dahil sa isipan ko."'
+    },
+    'Edukasyon':{
+      'Shock Statistic':'"16.9% ng mga Pilipinong 5-24 taong gulang ay out-of-school youth — halos 4 milyon ang bilang."',
+      'Rhetorical Question':'"Kung ang edukasyon ang susi sa kinabukasan, bakit maraming Pilipino ang walang susi?"',
+      'Personal Story':'"Nakilala ko si Juan — 12 taong gulang, nagtitinda ng sampaguita imbis na nag-aaral."'
+    },
+    'Social Media':{
+      'Shock Statistic':'"Average na Pilipino: 3 oras at 34 minuto sa social media bawat araw — pinakamataas sa mundo."',
+      'Rhetorical Question':'"Ilang likes na lang ang kailangan mo para masabing mahal ka ng tao?"',
+      'Personal Story':'"Isang post. Libong comment. Isang kabataan. Wala na."'
+    }
+  };
+  out.textContent = hooks[topic][style] + '\n\n💡 Ngayon sundan mo: ibigay ang 2-3 supporting points + call to action sa dulo.';
+}
+
+function countPantig(){
+  const text = document.getElementById('pantig-in').value.trim().toLowerCase();
+  const out = document.getElementById('pantig-out');
+  if(!text){ out.textContent='Mag-type ka muna ng linya.'; return; }
+  // count pantig Filipino-style: each group of (consonant)(vowel) or standalone vowel
+  const vowels = 'aeiou';
+  let totalWords = text.split(/\s+/).filter(Boolean);
+  let total = 0, breakdown = [];
+  totalWords.forEach(w=>{
+    let count = 0, chars = w.split('');
+    for(let i=0;i<chars.length;i++){
+      if(vowels.includes(chars[i])){
+        // skip subsequent vowel that forms diphthong? keep simple: each vowel = 1 pantig
+        count++;
+      }
+    }
+    if(count===0) count = 1;
+    breakdown.push(w+'('+count+')');
+    total += count;
+  });
+  out.textContent = 'Bilang ng pantig: '+total+'\nBreakdown: '+breakdown.join(' ');
+}
+
+function checkAntas(){
+  const input = document.getElementById('antas-in').value.trim().toLowerCase();
+  const out = document.getElementById('antas-out');
+  if(!input){ out.textContent='Mag-type ka.'; return; }
+  if(input.startsWith('pinaka') || input.startsWith('ubod')){
+    out.textContent='🎯 PASUKDOL — superlative! Parang "pinaka-highest" na level.';
+  } else if(input.startsWith('mas') || input.startsWith('kasin') || input.includes(' kaysa')){
+    out.textContent='🎯 PAHAMBING — may comparison.';
+  } else {
+    out.textContent='🎯 LANTAY — simple, no comparison.';
+  }
+}
+
+/* ============================================================
+   MATH INTERACTIVES
+   ============================================================ */
+function fmt(n){
+  if(Math.abs(n - Math.round(n)) < 1e-9) return String(Math.round(n));
+  return Number(n.toFixed(4)).toString();
+}
+
+function showStdForm(){
+  const a=+document.getElementById('sf-a').value;
+  const b=+document.getElementById('sf-b').value;
+  const c=+document.getElementById('sf-c').value;
+  const out=document.getElementById('sf-out');
+  if(a===0){ out.textContent='a cannot be 0 — otherwise it\'s not quadratic (it\'s linear).'; return; }
+  const bSign = b>=0 ? ' + '+b : ' - '+Math.abs(b);
+  const cSign = c>=0 ? ' + '+c : ' - '+Math.abs(c);
+  out.textContent = 'Standard form: '+a+'x²'+bSign+'x'+cSign+' = 0\n\na = '+a+'\nb = '+b+'\nc = '+c;
+}
+
+function solveFactor(){
+  const b=+document.getElementById('fac-b').value;
+  const c=+document.getElementById('fac-c').value;
+  const out=document.getElementById('fac-out');
+  let lines = ['Solving x² + ('+b+')x + ('+c+') = 0'];
+  lines.push('Step 1: Find 2 numbers that multiply to c='+c+' and add to b='+b+'.');
+  // try integer factors
+  let found = null;
+  for(let i=-Math.abs(c)-10;i<=Math.abs(c)+10;i++){
+    for(let j=-Math.abs(c)-10;j<=Math.abs(c)+10;j++){
+      if(i*j===c && i+j===b){ found=[i,j]; break; }
+    }
+    if(found) break;
+  }
+  if(!found){
+    lines.push('Step 2: No clean integer factors — use quadratic formula instead.');
+    const D = b*b - 4*c;
+    if(D<0){ lines.push('Discriminant = '+D+' < 0 → no real roots.'); }
+    else {
+      const r1 = (-b+Math.sqrt(D))/2;
+      const r2 = (-b-Math.sqrt(D))/2;
+      lines.push('x = '+fmt(r1)+' or x = '+fmt(r2));
+    }
+  } else {
+    const [m,n] = found;
+    lines.push('Step 2: Numbers found: '+m+' and '+n);
+    lines.push('Step 3: Rewrite as (x + ('+m+'))(x + ('+n+')) = 0');
+    lines.push('Step 4: Zero product property:');
+    lines.push('   x + '+m+' = 0  →  x = '+(-m));
+    lines.push('   x + '+n+' = 0  →  x = '+(-n));
+    lines.push('✅ Roots: x = '+(-m)+', x = '+(-n));
+  }
+  out.textContent = lines.join('\n');
+}
+
+function solveSqrt(){
+  const k=+document.getElementById('sqrt-k').value;
+  const out=document.getElementById('sqrt-out');
+  if(k<0){ out.textContent='x² = '+k+' has no real solution (can\'t sqrt a negative in reals).'; return; }
+  if(k===0){ out.textContent='x² = 0 → x = 0 (single root).'; return; }
+  const r = Math.sqrt(k);
+  out.textContent = 'x² = '+k+
+    '\nStep 1: Take √ of both sides → x = ±√'+k+
+    '\nStep 2: √'+k+' = '+fmt(r)+
+    '\n✅ x = '+fmt(r)+' or x = '+fmt(-r);
+}
+
+function solveQuadFormula(){
+  const a=+document.getElementById('qf-a').value;
+  const b=+document.getElementById('qf-b').value;
+  const c=+document.getElementById('qf-c').value;
+  const out=document.getElementById('qf-out');
+  if(a===0){ out.textContent='a = 0 → linear, not quadratic.'; return; }
+  const D = b*b - 4*a*c;
+  let lines = ['a='+a+', b='+b+', c='+c];
+  lines.push('Step 1: Compute discriminant D = b² - 4ac');
+  lines.push('   D = ('+b+')² - 4('+a+')('+c+') = '+(b*b)+' - '+(4*a*c)+' = '+D);
+  if(D<0){
+    lines.push('Step 2: D < 0 → no real roots (imaginary).');
+    const re = -b/(2*a), im = Math.sqrt(-D)/(2*a);
+    lines.push('Complex: x = '+fmt(re)+' ± '+fmt(im)+'i');
+  } else {
+    lines.push('Step 2: √D = √'+D+' = '+fmt(Math.sqrt(D)));
+    const r1 = (-b + Math.sqrt(D))/(2*a);
+    const r2 = (-b - Math.sqrt(D))/(2*a);
+    lines.push('Step 3: x = (-b ± √D) / 2a = ('+(-b)+' ± '+fmt(Math.sqrt(D))+') / '+(2*a));
+    lines.push('   x₁ = '+fmt(r1));
+    lines.push('   x₂ = '+fmt(r2));
+    lines.push('✅ Roots: x = '+fmt(r1)+', x = '+fmt(r2));
+  }
+  out.textContent = lines.join('\n');
+}
+
+function classifyDisc(){
+  const a=+document.getElementById('dis-a').value;
+  const b=+document.getElementById('dis-b').value;
+  const c=+document.getElementById('dis-c').value;
+  const out=document.getElementById('dis-out');
+  const D = b*b - 4*a*c;
+  const sqrtD = Math.sqrt(Math.abs(D));
+  const isPerf = D>=0 && Number.isInteger(sqrtD);
+  let cls = '';
+  if(D>0 && isPerf) cls='2 real, RATIONAL, UNEQUAL roots (clean)';
+  else if(D>0) cls='2 real, IRRATIONAL, unequal roots (messy decimals)';
+  else if(D===0) cls='1 real, REPEATED root';
+  else cls='NO real roots (imaginary / complex)';
+  out.textContent = 'D = b² - 4ac = '+(b*b)+' - '+(4*a*c)+' = '+D+'\n→ '+cls;
+}
+
+function findVertex(){
+  const a=+document.getElementById('par-a').value;
+  const b=+document.getElementById('par-b').value;
+  const c=+document.getElementById('par-c').value;
+  const out=document.getElementById('par-out');
+  if(a===0){ out.textContent='Not a parabola (a=0).'; return; }
+  const vx = -b/(2*a);
+  const vy = a*vx*vx + b*vx + c;
+  const opens = a>0 ? 'UP 🙂 (min point)' : 'DOWN 🙁 (max point)';
+  out.textContent =
+    'f(x) = '+a+'x² + ('+b+')x + ('+c+')'+
+    '\nAxis of symmetry: x = '+fmt(vx)+
+    '\nVertex: ('+fmt(vx)+', '+fmt(vy)+')'+
+    '\nOpens: '+opens+
+    '\nY-intercept: (0, '+c+')';
+  drawParabola(a,b,c,vx,vy);
+}
+function drawParabola(a,b,c,vx,vy){
+  const cv = document.getElementById('par-canvas');
+  const ctx = cv.getContext('2d');
+  const W=cv.width, H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  // find scale
+  const xmin = vx - 6, xmax = vx + 6;
+  let ymin = Infinity, ymax = -Infinity;
+  for(let i=0;i<=200;i++){
+    const x = xmin + (xmax-xmin)*i/200;
+    const y = a*x*x + b*x + c;
+    if(y<ymin) ymin=y; if(y>ymax) ymax=y;
+  }
+  const pad=0.2*(ymax-ymin); ymin-=pad; ymax+=pad;
+  function sx(x){ return (x-xmin)/(xmax-xmin)*W; }
+  function sy(y){ return H - (y-ymin)/(ymax-ymin)*H; }
+  // axes
+  ctx.strokeStyle='#334155'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,sy(0)); ctx.lineTo(W,sy(0)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(sx(0),0); ctx.lineTo(sx(0),H); ctx.stroke();
+  // curve
+  ctx.strokeStyle='#22d3ee'; ctx.lineWidth=2.5;
+  ctx.beginPath();
+  for(let i=0;i<=200;i++){
+    const x = xmin + (xmax-xmin)*i/200;
+    const y = a*x*x + b*x + c;
+    if(i===0) ctx.moveTo(sx(x),sy(y));
+    else ctx.lineTo(sx(x),sy(y));
+  }
+  ctx.stroke();
+  // vertex
+  ctx.fillStyle='#f59e0b';
+  ctx.beginPath(); ctx.arc(sx(vx),sy(vy),5,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#e5e7eb'; ctx.font='12px system-ui';
+  ctx.fillText('Vertex ('+fmt(vx)+','+fmt(vy)+')', sx(vx)+8, sy(vy)-6);
+}
+
+function solveDirectVar(){
+  const y1=+document.getElementById('dv-y1').value;
+  const x1=+document.getElementById('dv-x1').value;
+  const x2=+document.getElementById('dv-x2').value;
+  const out=document.getElementById('dv-out');
+  if(x1===0){ out.textContent='x cannot be 0.'; return; }
+  const k = y1/x1;
+  const y2 = k*x2;
+  out.textContent =
+    'Step 1: k = y/x = '+y1+'/'+x1+' = '+fmt(k)+
+    '\nStep 2: y = kx = '+fmt(k)+'·'+x2+' = '+fmt(y2)+
+    '\n✅ y = '+fmt(y2)+' when x = '+x2;
+}
+
+function simplifyRad(){
+  let n = +document.getElementById('rad-n').value;
+  const out=document.getElementById('rad-out');
+  if(n<0){ out.textContent='√ of negative is imaginary — skip for now.'; return; }
+  if(n===0){ out.textContent='√0 = 0'; return; }
+  // find largest perfect square factor
+  let largest = 1;
+  for(let i=2;i*i<=n;i++){
+    if(n%(i*i)===0) largest = i*i;
+  }
+  if(largest===1){
+    out.textContent = '√'+n+' is already simplified (no perfect square factor).\n≈ '+fmt(Math.sqrt(n));
+  } else {
+    const outside = Math.sqrt(largest);
+    const inside = n/largest;
+    if(inside===1) out.textContent = '√'+n+' = '+outside;
+    else out.textContent = '√'+n+' = √('+largest+'·'+inside+') = '+outside+'√'+inside+' ≈ '+fmt(Math.sqrt(n));
+  }
+}
+
+function solvePyth(){
+  const a=+document.getElementById('py-a').value;
+  const b=+document.getElementById('py-b').value;
+  const out=document.getElementById('py-out');
+  const c = Math.sqrt(a*a + b*b);
+  out.textContent =
+    'Step 1: a² + b² = c²'+
+    '\nStep 2: '+a+'² + '+b+'² = '+(a*a+b*b)+
+    '\nStep 3: c = √'+(a*a+b*b)+' = '+fmt(c);
+}
+
+function calcTrig(){
+  const deg=+document.getElementById('tr-ang').value;
+  const hyp=+document.getElementById('tr-hyp').value;
+  const out=document.getElementById('tr-out');
+  const rad = deg*Math.PI/180;
+  const opp = hyp * Math.sin(rad);
+  const adj = hyp * Math.cos(rad);
+  out.textContent =
+    'θ = '+deg+'°, hypotenuse = '+hyp+
+    '\nsin('+deg+'°) = '+fmt(Math.sin(rad))+' → opposite = hyp·sin = '+fmt(opp)+
+    '\ncos('+deg+'°) = '+fmt(Math.cos(rad))+' → adjacent = hyp·cos = '+fmt(adj)+
+    '\ntan('+deg+'°) = '+fmt(Math.tan(rad));
+}
+
+function solveElevation(){
+  const h=+document.getElementById('el-h').value;
+  const d=+document.getElementById('el-d').value;
+  const out=document.getElementById('el-out');
+  const theta = Math.atan2(h,d)*180/Math.PI;
+  out.textContent =
+    'Step 1: tan(θ) = opposite/adjacent = '+h+'/'+d+' = '+fmt(h/d)+
+    '\nStep 2: θ = arctan('+fmt(h/d)+') = '+fmt(theta)+'°';
+}
+
+/* ============================================================
+   SCIENCE INTERACTIVES
+   ============================================================ */
+function makePunnett(){
+  const p1 = document.getElementById('p1').value.split('');
+  const p2 = document.getElementById('p2').value.split('');
+  const out = document.getElementById('pun-out');
+  const grid = [];
+  for(let i=0;i<2;i++){
+    const row = [];
+    for(let j=0;j<2;j++){
+      let a=p1[i], b=p2[j];
+      if(a>b) [a,b]=[b,a]; // put uppercase first
+      row.push(a+b);
+    }
+    grid.push(row);
+  }
+  const flat = grid.flat();
+  const counts = {};
+  flat.forEach(g=>counts[g]=(counts[g]||0)+1);
+  const pheno = {dom:0,rec:0};
+  flat.forEach(g=>{ if(g.includes(g[0].toUpperCase()) && g[0]===g[0].toUpperCase()) pheno.dom++; else pheno.rec++; });
+  // phenotype calc: if any uppercase → dominant trait
+  pheno.dom = flat.filter(g=>/[A-Z]/.test(g)).length;
+  pheno.rec = flat.length - pheno.dom;
+  let text = 'Punnett: '+p1.join('')+' × '+p2.join('')+'\n';
+  text += '     '+p2[0]+'   '+p2[1]+'\n';
+  text += p1[0]+' | '+grid[0][0]+' | '+grid[0][1]+'\n';
+  text += p1[1]+' | '+grid[1][0]+' | '+grid[1][1]+'\n';
+  text += '\nGenotype ratio: ';
+  text += Object.entries(counts).map(([k,v])=>v+' '+k).join(' : ');
+  text += '\nPhenotype: '+pheno.dom+' dominant : '+pheno.rec+' recessive';
+  out.textContent = text;
+}
+
+function eConfig(){
+  let z = +document.getElementById('at-z').value;
+  const out = document.getElementById('at-out');
+  if(z<1||z>36){ out.textContent='Z range: 1-36 lang for now.'; return; }
+  // use simplified Bohr: 2, 8, 8, 18
+  const caps = [2,8,8,18];
+  const shells=[]; let remaining = z;
+  for(const cap of caps){
+    if(remaining<=0) break;
+    const fill = Math.min(remaining, cap);
+    shells.push(fill);
+    remaining -= fill;
+  }
+  const labels = ['K','L','M','N'];
+  const valence = shells[shells.length-1];
+  const elements = ['','H','He','Li','Be','B','C','N','O','F','Ne','Na','Mg','Al','Si','P','S','Cl','Ar','K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn','Ga','Ge','As','Se','Br','Kr'];
+  out.textContent =
+    'Element: '+elements[z]+' (Z='+z+')'+
+    '\nShell distribution: '+shells.map((n,i)=>labels[i]+'='+n).join(', ')+
+    '\nValence electrons (outermost): '+valence+
+    '\nFull config: '+shells.join(', ');
+}
+
+function calcProjectile(){
+  const v=+document.getElementById('pr-v').value;
+  const h=+document.getElementById('pr-h').value;
+  const out=document.getElementById('pr-out');
+  const g=9.8;
+  const t = Math.sqrt(2*h/g);
+  const d = v*t;
+  const vfy = g*t;
+  const vtotal = Math.sqrt(v*v + vfy*vfy);
+  out.textContent =
+    'Horizontal launch, v₀ = '+v+' m/s, height = '+h+' m, g = 9.8 m/s²'+
+    '\nStep 1: Time to fall: h = ½gt² → t = √(2h/g) = √('+(2*h/g).toFixed(3)+') = '+fmt(t)+' s'+
+    '\nStep 2: Horizontal distance: x = v·t = '+v+'·'+fmt(t)+' = '+fmt(d)+' m'+
+    '\nStep 3: Final vertical velocity: vᵧ = g·t = '+fmt(vfy)+' m/s'+
+    '\nStep 4: Total speed at impact: √(vₓ² + vᵧ²) = '+fmt(vtotal)+' m/s';
+}
+
+function calcMom(){
+  const m=+document.getElementById('mom-m').value;
+  const v=+document.getElementById('mom-v').value;
+  const out=document.getElementById('mom-out');
+  const p=m*v;
+  out.textContent='p = m·v = '+m+'·'+v+' = '+fmt(p)+' kg·m/s';
+}
+
+function calcEnergy(){
+  const m=+document.getElementById('en-m').value;
+  const h=+document.getElementById('en-h').value;
+  const out=document.getElementById('en-out');
+  const g=9.8;
+  const PE = m*g*h;
+  const v = Math.sqrt(2*g*h);
+  const KE = 0.5*m*v*v;
+  out.textContent =
+    'Step 1: PE at top = mgh = '+m+'·9.8·'+h+' = '+fmt(PE)+' J'+
+    '\nStep 2: At bottom, all PE → KE (conservation)'+
+    '\nStep 3: KE = '+fmt(KE)+' J'+
+    '\nStep 4: Find v from ½mv² = KE → v = √(2gh) = '+fmt(v)+' m/s';
+}
+
+/* NEW: Tayutay identifier */
+function idTayutay(){
+  const t = document.getElementById('tay-in').value.trim().toLowerCase();
+  const out = document.getElementById('tay-out');
+  if(!t){ out.textContent='Mag-type ng linya.'; return; }
+  if(/tulad ng|parang|kawangis|katulad/i.test(t)) out.textContent='🎯 PAGTUTULAD (Simile) — may "tulad ng" / "parang".';
+  else if(/humihikbi|umiiyak|kumakanta|tumatawa|sumusigaw/i.test(t)) out.textContent='🎯 PERSONIPIKASYON — bagay na para ngang tao ang kilos.';
+  else if(/libo|milyong|daming|sobrang|ultra/i.test(t)) out.textContent='🎯 PAGMAMALABIS (Hyperbole) — exaggerated.';
+  else if(/\b(\w+)\b.*\b\1\b.*\b\1\b/.test(t)) out.textContent='🎯 PAG-UULIT (Repetition) — may paulit-ulit na salita.';
+  else if(/\?$/.test(t)) out.textContent='🎯 PAGTATANONG RETORIKAL (kung hindi talaga kailangan ng sagot).';
+  else out.textContent='🎯 Malamang METAPORA (direct comparison without "parang") o plain statement. I-analyze mo based sa kahulugan.';
+}
+
+/* NEW: Complete the square */
+function completeSq(){
+  const b=+document.getElementById('cs-b').value;
+  const c=+document.getElementById('cs-c').value;
+  const out=document.getElementById('cs-out');
+  const half = b/2, squared = half*half;
+  const right = -c + squared;
+  let lines = ['Solving x² + ('+b+')x + ('+c+') = 0'];
+  lines.push('Step 1: Move constant: x² + '+b+'x = '+(-c));
+  lines.push('Step 2: Half of b = '+fmt(half)+', squared = '+fmt(squared));
+  lines.push('Step 3: Add '+fmt(squared)+' to both sides:');
+  lines.push('   x² + '+b+'x + '+fmt(squared)+' = '+fmt(right));
+  lines.push('Step 4: Factor left: (x + '+fmt(half)+')² = '+fmt(right));
+  if(right<0){
+    lines.push('Step 5: Right side is negative → no real solutions.');
+  } else {
+    const r = Math.sqrt(right);
+    lines.push('Step 5: Take √: x + '+fmt(half)+' = ±'+fmt(r));
+    lines.push('✅ x = '+fmt(-half + r)+' or x = '+fmt(-half - r));
+  }
+  out.textContent = lines.join('\n');
+}
+
+/* NEW: Exponent calc */
+function calcExp(){
+  const b=+document.getElementById('ex-b').value;
+  const eStr=document.getElementById('ex-e').value.trim();
+  const out=document.getElementById('ex-out');
+  let e;
+  if(eStr.includes('/')){
+    const parts = eStr.split('/').map(Number);
+    e = parts[0]/parts[1];
+  } else e = +eStr;
+  if(isNaN(e)){ out.textContent='Invalid exponent.'; return; }
+  const result = Math.pow(b, e);
+  let explanation = b+'^('+eStr+') = ';
+  if(e===0) explanation += '1 (zero exponent rule)';
+  else if(e<0) explanation += '1/('+b+'^'+(-e)+') = 1/'+Math.pow(b,-e)+' = '+fmt(result);
+  else if(eStr.includes('/')) explanation += 'ⁿ√('+b+'^m) = '+fmt(result);
+  else explanation += fmt(result);
+  out.textContent = explanation;
+}
+
+/* NEW: Trapezoid area */
+function trapArea(){
+  const b1=+document.getElementById('tr-b1').value;
+  const b2=+document.getElementById('tr-b2').value;
+  const h=+document.getElementById('tr-h2').value;
+  const out=document.getElementById('tr-area-out');
+  const area = 0.5*(b1+b2)*h;
+  const mid = (b1+b2)/2;
+  out.textContent =
+    'Area = ½ · (b₁ + b₂) · h = ½ · ('+b1+' + '+b2+') · '+h+' = '+fmt(area)+
+    '\nMidsegment length = (b₁ + b₂)/2 = '+fmt(mid);
+}
+
+/* NEW: All 6 trig ratios */
+function calcAllTrig(){
+  const deg=+document.getElementById('tr6-ang').value;
+  const out=document.getElementById('tr6-out');
+  const rad=deg*Math.PI/180;
+  const s=Math.sin(rad), c=Math.cos(rad), t=Math.tan(rad);
+  out.textContent =
+    'θ = '+deg+'°:'+
+    '\nsin(θ) = '+fmt(s)+'      csc(θ) = '+(s===0?'undefined':fmt(1/s))+
+    '\ncos(θ) = '+fmt(c)+'      sec(θ) = '+(Math.abs(c)<1e-9?'undefined':fmt(1/c))+
+    '\ntan(θ) = '+(Math.abs(c)<1e-9?'undefined':fmt(t))+
+    '      cot(θ) = '+(Math.abs(s)<1e-9?'undefined':fmt(c/s));
+}
+
+/* NEW: Newton F=ma */
+function calcNewton(){
+  const m=+document.getElementById('nw-m').value;
+  const f=+document.getElementById('nw-f').value;
+  const out=document.getElementById('nw-out');
+  if(m===0){ out.textContent='Mass cannot be zero.'; return; }
+  out.textContent = 'F = m·a → a = F/m = '+f+'/'+m+' = '+fmt(f/m)+' m/s²';
+}
+
+/* NEW: Ohm's Law */
+function calcOhm(){
+  const v=+document.getElementById('oh-v').value;
+  const r=+document.getElementById('oh-r').value;
+  const out=document.getElementById('oh-out');
+  if(r===0){ out.textContent='R cannot be 0.'; return; }
+  const i=v/r, p=v*i;
+  out.textContent =
+    'Ohm\'s Law: I = V/R = '+v+'/'+r+' = '+fmt(i)+' A'+
+    '\nPower: P = V·I = '+v+'·'+fmt(i)+' = '+fmt(p)+' W';
+}
+</script>
+</body>
+</html>
