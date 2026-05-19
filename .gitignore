@@ -1,0 +1,90 @@
+
+# === Added by mass-push 2026-05-19 ===
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.tox/
+
+# Node / TS
+node_modules/
+.next/
+.nuxt/
+.turbo/
+dist/
+build/
+.svelte-kit/
+.cache/
+
+# Rust
+target/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Secrets - NEVER commit
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.key
+*.pem
+*.token
+*.crt
+secrets.yml
+secrets.yaml
+credentials*
+.totp_secret
+*.enc
+*.enc.bak
+*.enc.old
+.flask-secret-key
+service-account*.json
+google-credentials*.json
+aws-credentials*
+
+# Heavy binaries / data
+*.bin
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.onnx
+*.tar
+*.tar.gz
+*.tar.zst
+*.tgz
+*.zip
+*.7z
+*.parquet
+*.duckdb
+*.sqlite
+*.sqlite3
+
+# Vector / RAG stores
+qdrant_storage/
+chromadb/
+chroma_db/
+.chroma/
+faiss_index/
+
+# Logs
+*.log
+logs/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
