@@ -1,0 +1,11 @@
+project: grade9-sta-survival
+name: grade9-sta-survival
+pillar: product
+type: product
+description: Interactive Grade 9 learning page (Filipino/Math/Science) with Feynman
+needs:
+  web: { framework: static }
+  db: { engine: none }
+  compute: { kind: none }
+  secrets: []
+rails: { codex: false, monad: true }
